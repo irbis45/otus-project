@@ -2,7 +2,6 @@
 
 namespace App\Application\Core\Comment\UseCases\Commands\Create;
 
-use App\Application\Core\Category\DTO\CategoryDTO;
 use App\Application\Core\Comment\DTO\AuthorDTO;
 use App\Application\Core\Comment\DTO\CommentDTO;
 use App\Application\Core\Comment\DTO\StatusDTO;

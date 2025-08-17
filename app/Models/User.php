@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Application\Core\Permission\Enums\Permission as PermissionEnum;
 use App\Application\Core\Role\Enums\Role as RoleEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,8 +13,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Laravel\Passport\HasApiTokens;
-
-//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
@@ -159,12 +158,6 @@ class User extends Authenticatable
         return false;
     }
 
-    // Связь прав через роли (permissions через роли)
-   /* public function permissions(): BelongsToMany
-    {
-        return $this->roles()->with('permissions')->get()->pluck('permissions')->flatten()->unique('id');
-    }*/
-
     /**
      * @return Collection
      */
@@ -199,7 +192,6 @@ class User extends Authenticatable
 
     public function attachRoles(array $roleIds): self
     {
-        // Убираем дубликаты ID, на всякий случай
         $roleIds = array_unique($roleIds);
 
         if (!empty($roleIds)) {
@@ -212,7 +204,6 @@ class User extends Authenticatable
 
     public function syncRoles(array $roleIds): self
     {
-        // Убираем дубликаты, на всякий случай
         $roleIds = array_unique($roleIds);
 
         // Синхронизируем роли, удаляя все, которых нет в $roleIds, и добавляя новые

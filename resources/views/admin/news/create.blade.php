@@ -115,8 +115,7 @@
 @section('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Здесь можно добавить инициализацию редактора для поля content
-            // Например, CKEditor, TinyMCE и т.д.
+
         });
     </script>
 @endsection

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Application\Core\Role\Enums\Role as RoleEnum;
+use App\Application\Core\Role\UseCases\Commands\ChangeUserRole\Command as ChangeRoleCommand;
+use App\Application\Core\Role\UseCases\Commands\ChangeUserRole\Handler as ChangeRoleHandler;
 use App\Application\Core\User\Exceptions\UserEmailAlreadyExistsException;
 use App\Application\Core\User\Exceptions\UserSaveException;
 use App\Application\Core\User\UseCases\Commands\Create\Handler;
@@ -58,7 +61,7 @@ class RegisterController extends Controller
     }
 
     // Переопределяем метод регистрации
-    public function register(Request $request, Handler $handler, AuthManager $authManager)
+    public function register(Request $request, Handler $handler, AuthManager $authManager, ChangeRoleHandler $changeRoleHandler)
     {
         $this->validator($request->all())->validate();
 
@@ -68,10 +71,12 @@ class RegisterController extends Controller
                 name: $request->input('name'),
                 email: $request->input('email'),
                 password: $request->input('password'),
-                //roles: ['user'], // назначаем роль по умолчанию
             );
 
             $userDTO = $handler->handle($command);
+
+            $changeRoleCommand = new ChangeRoleCommand($userDTO->id, [RoleEnum::USER->value]);
+            $changeRoleHandler->handle($changeRoleCommand);
 
             $authManager->loginUsingId($userDTO->id);
 

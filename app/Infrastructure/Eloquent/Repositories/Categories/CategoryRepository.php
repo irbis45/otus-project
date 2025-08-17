@@ -116,7 +116,6 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * Упростим задачу. Определяем популярность категории по количеству новостей
      *
      * @param int $limit
      *

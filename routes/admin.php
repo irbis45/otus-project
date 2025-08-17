@@ -68,9 +68,7 @@ Route::prefix('comments')
          //Route::post('/', [Comments\CreateController::class, 'store'])->name('store');
 
          Route::get('/{commentId}', Comments\ShowController::class)->name('show');
-
          Route::get('/{commentId}/edit', [Comments\UpdateController::class, 'edit'])->name('edit');
          Route::put('/{commentId}', [Comments\UpdateController::class, 'update'])->name('update');
-
          Route::delete('/{commentId}', Comments\DestroyController::class)->name('destroy');
      });

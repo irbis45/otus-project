@@ -44,7 +44,6 @@
     position: absolute;
 }
 
-/* Для поддержки старых браузеров, у которых нет поддержки aspect-ratio */
 @supports not (aspect-ratio: 1) {
     .placeholder-300x200 {
         position: relative;

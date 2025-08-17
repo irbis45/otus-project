@@ -25,7 +25,6 @@ class IndexController extends Controller
         $query = Query::fromPage($page, $perPage);
         $paginatedResult = $fetcher->fetch($query);
 
-        // Преобразуем PaginatedResult в LengthAwarePaginator для шаблона
         $categories = new LengthAwarePaginator(
             items: $paginatedResult->items,
             total: $paginatedResult->total,

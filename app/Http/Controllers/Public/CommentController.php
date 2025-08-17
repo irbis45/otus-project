@@ -34,10 +34,10 @@ class CommentController extends Controller
                              ->withInput()
                              ->with('error', $e->getMessage());
 
-        }  catch (Exception $e) {
+        }  catch (Exception) {
             return redirect()->back()
                              ->withInput()
-                             ->with('error', 'Произошла непредвиденная ошибка при создании комментария. Попробуйте позже.'. $e);
+                             ->with('error', 'Произошла непредвиденная ошибка при создании комментария. Попробуйте позже.');
         }
     }
 }

@@ -17,7 +17,6 @@ class SendTelegramNotification implements ShouldQueue
      */
     public function __construct(private TelegramServiceInterface $telegramService)
     {
-        //
     }
 
     /**

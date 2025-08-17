@@ -22,25 +22,20 @@ class Fetcher
     ) {
     }
 
-
     public function fetch(Query $query): ResultDTO
     {
-        // 1. Получаем все комментарии для новости с одобренным статусом
         /** @var ?Comment $comment */
         $comments = $this->commentRepository->fetchAllByNewsId($query->newsId);
 
-        // 2. Загружаем всех авторов
         $authorIds = array_unique(array_map(fn(Comment $c) => $c->getAuthorId(), $comments));
         $authors = $this->userRepository->findByIds($authorIds);
 
-        // 3. Строим ассоциативный массив комментариев по их ID для удобства
         $commentsById = [];
         foreach ($comments as $comment) {
             $comment->setReplies([]);
             $commentsById[$comment->getId()] = $comment;
         }
 
-        // 4. Строим дерево
         $rootComments = [];
         foreach ($comments as $comment) {
             $parentId = $comment->getParentId();
@@ -53,14 +48,13 @@ class Fetcher
             }
         }
 
-        // 5. Преобразуем дерево в DTO рекурсивно
         $commentDTOs = array_map(fn(Comment $comment) => $this->toCommentDTO($comment, $authors), $rootComments);
 
         return new ResultDTO($commentDTOs);
     }
 
     /**
-     * Преобразует Comment в CommentDTO, рекурсивно добавляя replies.
+     * Преобразует Comment в CommentDTO
      *
      * @param Comment $comment
      * @param array<int, \App\Models\User> $authors

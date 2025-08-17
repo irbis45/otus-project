@@ -54,7 +54,6 @@ class Handler
             $news->{$news->getColumnName('thumbnail')} = $command->thumbnail;
         }
 
-        // Обновляем только те поля, которые переданы (не null)
         if ($command->title !== null) {
             $news->{$news->getColumnName('title')} = $command->title;
         }

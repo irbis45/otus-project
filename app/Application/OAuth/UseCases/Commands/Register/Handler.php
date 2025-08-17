@@ -11,6 +11,9 @@ use App\Application\OAuth\Exceptions\UserSaveException;
 use App\Infrastructure\PasswordHasher\LaravelPasswordHasher;
 use App\Models\User;
 
+/**
+ * Не используется, так как регистрация пользователя через API не предусмотрена.
+ */
 class Handler
 {
     public function __construct(
@@ -32,7 +35,6 @@ class Handler
             throw new UserSaveException("Не удалось сохранить токен");
         }
 
-        // Ищем роли по слагам из команды
         $roles = $this->roleRepository->findBySlugs([Role::USER->value]);
 
         if (!empty($roles)) {

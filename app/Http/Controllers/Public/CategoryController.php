@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Public;
 use App\Application\Core\Category\UseCases\Queries\FetchAllPagination\Fetcher as CategoryFetcher;
 use App\Application\Core\Category\UseCases\Queries\FetchAllPagination\Query as CategoryQuery;
 use App\Http\Controllers\Controller;
-//use Illuminate\Http\Request;
 use App\Http\Requests\CategoryPageRequest;
 use Illuminate\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -21,7 +20,6 @@ class CategoryController extends Controller
         $query = CategoryQuery::fromPage($page, self::CATEGORIES_PER_PAGE, true);
         $paginatedResult = $fetcher->fetch($query);
 
-        // Преобразуем PaginatedResult в LengthAwarePaginator для шаблона
         $categories = new LengthAwarePaginator(
             items: $paginatedResult->items,
             total: $paginatedResult->total,

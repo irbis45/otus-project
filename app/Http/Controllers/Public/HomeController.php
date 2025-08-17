@@ -11,7 +11,6 @@ use App\Http\Requests\HomePageRequest;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\View\View;
 
-//use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -25,17 +24,12 @@ class HomeController extends Controller
      */
     public function __invoke(HomePageRequest $request, LatestFetcher $latestFetcher, FeaturedFetcher $featuredFetcher): View
     {
-        //dd(auth()->user()->hasRole(Role::EDITOR));
-        //dd(auth()->user()->roles);
-       // dd(auth()->user()->permissions());
-        //dd(auth()->user()->hasPermission(Permission::CREATE_NEWS));
 
         $page = (int)$request->input('page', 1);
 
         $query = LatestQuery::fromPage($page, self::NEWS_PER_PAGE, true);
         $paginatedResult = $latestFetcher->fetch($query);
 
-        // Преобразуем PaginatedResult в LengthAwarePaginator для шаблона
         $latestNews = new LengthAwarePaginator(
             items: $paginatedResult->items,
             total: $paginatedResult->total,

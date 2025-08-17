@@ -45,7 +45,6 @@ class CreateController extends Controller
 
             $userDTO = $handler->handle($command);
 
-            // Получаем роли из запроса, если они есть
             $roles = $request->get('roles', [RoleEnum::USER->value]);
             if (is_string($roles)) {
                 $roles = [$roles];
@@ -67,7 +66,7 @@ class CreateController extends Controller
                              ->withInput()
                              ->with('error', $e->getMessage());
 
-        } catch (Exception $e) {
+        } catch (Exception) {
             return redirect()->back()
                              ->withInput()
                              ->with('error', 'Произошла непредвиденная ошибка при создании пользователя. Попробуйте позже.');

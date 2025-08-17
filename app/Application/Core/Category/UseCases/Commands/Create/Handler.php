@@ -17,7 +17,6 @@ class Handler
 
     public function handle(Command $command): CategoryDTO
     {
-        // Проверяем, существует ли уже категория с таким именем
         if ($this->categoryRepository->existsByName($command->name)) {
             throw new CategoryAlreadyExistsException($command->name);
         }

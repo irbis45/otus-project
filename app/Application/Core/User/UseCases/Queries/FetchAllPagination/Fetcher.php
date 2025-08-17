@@ -47,7 +47,6 @@ class Fetcher
                 emailVerifiedAt: $user->getEmailVerifiedAt()? new DateTimeImmutable($user->getEmailVerifiedAt()) : null,
                 updatedAt:       $user->getUpdatedAt() ? new DateTimeImmutable($user->getUpdatedAt()) : null,
                 roles:           isset($rolesByUser[$user->getId()]) ? $rolesByUser[$user->getId()] : [],
-                // permissions: method_exists($user, 'getPermissions') ? $user->getPermissions()->permissions : [],
             );
         }, $users);
 

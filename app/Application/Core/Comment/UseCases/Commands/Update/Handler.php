@@ -7,7 +7,6 @@ use App\Application\Core\Comment\DTO\StatusDTO;
 use App\Application\Core\Comment\Exceptions\CommentNotFoundException;
 use App\Application\Core\Comment\Repositories\CommentRepositoryInterface;
 use App\Application\Core\User\Repositories\UserRepositoryInterface;
-use App\Application\Core\Comment\UseCases\Commands\Update\Command;
 use App\Application\Core\Comment\DTO\AuthorDTO;
 
 class Handler

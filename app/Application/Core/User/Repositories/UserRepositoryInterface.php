@@ -39,6 +39,8 @@ interface UserRepositoryInterface
      */
     public function find(int $id): ?User;
 
+    public function findByEmail(string $email): ?User;
+
     /**
      * @param User $user
      *

@@ -6,6 +6,7 @@ use App\Application\Contracts\PasswordHasherInterface;
 use App\Application\Core\Profile\Exceptions\ProfileInvalidCurrentPasswordException;
 use App\Application\Core\Profile\Exceptions\ProfileNotFoundException;
 use App\Application\Core\User\Repositories\UserRepositoryInterface;
+
 class Handler
 {
     public function __construct(

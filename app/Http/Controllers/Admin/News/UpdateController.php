@@ -51,7 +51,7 @@ class UpdateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateNewsRequest $request, UpdateHandler $updateNewsUseCase, AuthManager $authManager, ThumbnailService $thumbnailService, string $newsId): RedirectResponse
+    public function update(UpdateNewsRequest $request, UpdateHandler $updateNewsUseCase, ThumbnailService $thumbnailService, string $newsId): RedirectResponse
     {
         Gate::authorize('news.update', $newsId);
 
@@ -66,7 +66,6 @@ class UpdateController extends Controller
                 title: $request->get('title'),
                 content: $request->get('content'),
                 excerpt: $request->filled('excerpt') ? $request->get('excerpt') : null,
-                authorId: $authManager->user()->getAuthIdentifier(),
                 categoryId: $request->get('category_id'),
                 publishedAt: $request->filled('published_at') ? new DateTimeImmutable($request->get('published_at')) : new DateTimeImmutable('now'),
                 active: $request->boolean('active', true),

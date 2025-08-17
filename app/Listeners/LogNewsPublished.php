@@ -16,7 +16,7 @@ class LogNewsPublished implements ShouldQueue
      */
     public function __construct()
     {
-        //
+
     }
 
     /**

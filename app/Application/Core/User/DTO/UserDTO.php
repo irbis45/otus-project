@@ -2,7 +2,6 @@
 
 namespace App\Application\Core\User\DTO;
 
-use Carbon\Carbon;
 use DateTimeImmutable;
 
 final readonly class UserDTO

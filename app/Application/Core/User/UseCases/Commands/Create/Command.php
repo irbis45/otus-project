@@ -8,7 +8,6 @@ final readonly class Command
         public string $name,
         public string $email,
         public ?string $password = null,
-       // public array $roles = [],
     ) {
     }
 }

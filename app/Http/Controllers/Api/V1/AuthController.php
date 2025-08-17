@@ -17,13 +17,13 @@ use Illuminate\Http\Response;
 class AuthController extends Controller
 {
     /**
-     *
+     * Не используется, так как регистрация пользователя через API не предусмотрена.
      * @param Request         $request
      * @param RegisterHandler $registerHandler
      *
      * @return JsonResponse
      */
-    public function register(Request $request, RegisterHandler $registerHandler): JsonResponse
+    /*public function register(Request $request, RegisterHandler $registerHandler): JsonResponse
     {
         $validated = $request->validate([
                                'name' => 'required|string',
@@ -38,7 +38,7 @@ class AuthController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], Response::HTTP_UNAUTHORIZED);
         }
-    }
+    }*/
 
     /**
      * @param Request      $request

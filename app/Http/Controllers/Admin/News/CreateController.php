@@ -69,7 +69,7 @@ class CreateController extends Controller
             }
 
         } catch (NewsNotFoundException) {
-            throw new NotFoundHttpException('News not found');
+            throw new NotFoundHttpException('Новость не найдена');
         }
 
         return redirect()->route('admin.news.index');

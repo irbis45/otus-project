@@ -19,7 +19,6 @@ class Handler
         $roles = $this->roleRepository->findBySlugs($command->roleSlugs);
         $roleIds = array_map(fn($role) => $role->id, $roles);
 
-        //$user->roles()->sync($roleIds);
         $user->syncRoles($roleIds);
     }
 }

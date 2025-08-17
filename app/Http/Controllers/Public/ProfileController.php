@@ -50,9 +50,6 @@ class ProfileController extends Controller
     {
         $userId = $authManager->user()->getAuthIdentifier();
 
-       /* if (! $userId) {
-            throw new NotFoundHttpException('Профиль не найден');
-        }*/
         try {
 
             $command = new UpdateCommand(
@@ -80,10 +77,6 @@ class ProfileController extends Controller
     public function destroy(DeleteProfileRequest $request, AuthManager $authManager, DeleteHandler $deleteNewsUseCase): RedirectResponse
     {
         $userId = $authManager->user()->getAuthIdentifier();
-
-      /*  if (! $userId) {
-            throw new NotFoundHttpException('Профиль не найден');
-        }*/
 
         try {
             $command = new DeleteCommand(

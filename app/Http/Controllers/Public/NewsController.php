@@ -15,7 +15,6 @@ use App\Application\Core\News\UseCases\Queries\FetchByCategoryPagination\Query a
 use App\Application\Core\Category\UseCases\Queries\FetchBySlug\Fetcher as CategoryFetcher;
 use App\Application\Core\Category\UseCases\Queries\FetchBySlug\Query as CategoryQuery;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\SearchNewsRequest;
 use App\Http\Requests\NewsPageRequest;
 use Illuminate\View\View;
@@ -60,7 +59,6 @@ class NewsController extends Controller
             $query = NewsByCategoryQuery::fromPage($category->id, $page, self::NEWS_PER_PAGE);
             $paginatedResult = $newsFetcher->fetch($query);
 
-            // Преобразуем PaginatedResult в LengthAwarePaginator для шаблона
             $news = new LengthAwarePaginator(
                 items: $paginatedResult->items,
                 total: $paginatedResult->total,
@@ -85,7 +83,6 @@ class NewsController extends Controller
 
         $page = (int)$request->input('page', 1);
 
-        // Получаем значение поискового запроса (если нужно)
         $searchQuery = $request->input('query', null);
 
         $query = NewsSearchQuery::fromPage($searchQuery, $page, self::SEARCH_NEWS_PER_PAGE);

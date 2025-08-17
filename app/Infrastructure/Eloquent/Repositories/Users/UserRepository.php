@@ -49,6 +49,14 @@ class UserRepository implements UserRepositoryInterface
         return User::query()->find($id);
     }
 
+    /**
+     * @param string $email
+     *
+     * @return User|null
+     */
+    public function findByEmail(string $email): ?User {
+        return User::query()->where('email', $email)->first();
+    }
 
     /**
      * @param User $user

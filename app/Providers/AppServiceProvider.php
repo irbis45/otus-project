@@ -17,7 +17,6 @@ use App\Application\OAuth\AuthService as OAuthAuthService;
 use App\Application\OAuth\Contracts\AuthServiceInterface as OAuthAuthServiceInterface;
 use App\Application\OAuth\Contracts\OAuthRefreshTokenRepositoryInterface;
 use App\Application\OAuth\Contracts\OAuthTokenRepositoryInterface;
-use App\Application\OAuth\Contracts\UserRepositoryInterface as OAuthUserRepositoryInterface;
 use App\Infrastructure\Cache\LaravelCache;
 use App\Infrastructure\Eloquent\Repositories\Categories\CategoryRepository;
 use App\Infrastructure\Eloquent\Repositories\Comments\CommentRepository;
@@ -84,11 +83,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             ViewedNewsStorageInterface::class,
             SessionViewedNewsStorage::class
-        );
-
-        $this->app->bind(
-            OAuthUserRepositoryInterface::class,
-            UserRepository::class
         );
 
         $this->app->bind(OAuthAuthServiceInterface::class, OAuthAuthService::class);

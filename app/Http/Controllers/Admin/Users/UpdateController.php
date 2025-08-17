@@ -59,7 +59,7 @@ class UpdateController extends Controller
             $handler->handle($command);
 
             // Изменяем роли, если они переданы
-            $roles = $request->get('roles', []); //
+            $roles = $request->get('roles', []);
             if (!empty($roles)) {
                 if (is_string($roles)) {
                     $roles = [$roles];
@@ -81,7 +81,7 @@ class UpdateController extends Controller
                              ->withInput()
                              ->with('error', $e->getMessage());
 
-        } catch (Exception $e) {
+        } catch (Exception) {
             return redirect()->back()
                              ->withInput()
                              ->with('error', 'Произошла непредвиденная ошибка при создании пользователя. Попробуйте позже.');

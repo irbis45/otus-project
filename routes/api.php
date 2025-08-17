@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('v1') ->as('v1.')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
-    //Route::post('/register', [AuthController::class, 'register']);
+    //Route::post('/register', [AuthController::class, 'register']); // Не используется, так как регистрация пользователя через API не предусмотрена.
 });
 
 Route::prefix('v1')

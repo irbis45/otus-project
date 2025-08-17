@@ -3,8 +3,6 @@
 namespace App\Application\Core\User\UseCases\Commands\Create;
 
 use App\Application\Contracts\PasswordHasherInterface;
-use App\Application\Core\Role\Enums\Role;
-use App\Application\Core\Role\Repositories\RoleRepositoryInterface;
 use App\Application\Core\User\DTO\UserDTO;
 use App\Application\Core\User\Exceptions\UserEmailAlreadyExistsException;
 use App\Application\Core\User\Exceptions\UserSaveException;
@@ -17,7 +15,6 @@ class Handler
     public function __construct(
         private UserRepositoryInterface $userRepository,
         private PasswordHasherInterface $passwordHasher,
-        private RoleRepositoryInterface $roleRepository,
     ) {
     }
 
@@ -42,15 +39,6 @@ class Handler
             throw new UserSaveException("Не удалось сохранить пользователя '{$command->name}'");
         }
 
-       //$rolesToAssign = $command->roles ?: [Role::USER->value];
-
-        // Ищем роли по слагам из команды
-       // $roles = $this->roleRepository->findBySlugs($rolesToAssign);
-
-//        if (!empty($roles)) {
-//            $user->attachRoles(array_map(fn($role) => $role->id, $roles));
-//        }
-
         return new UserDTO(
             id:              $user->getId(),
             name:            $user->getName(),
@@ -58,7 +46,6 @@ class Handler
             createdAt:       $user->getCreatedAt() ? new DateTimeImmutable($user->getCreatedAt()) : null,
             emailVerifiedAt: $user->getEmailVerifiedAt()? new DateTimeImmutable($user->getEmailVerifiedAt()) : null,
             updatedAt:       $user->getUpdatedAt() ? new DateTimeImmutable($user->getUpdatedAt()) : null,
-            //roles:           array_map(fn($role) => $role->id, $roles),
         );
     }
 }

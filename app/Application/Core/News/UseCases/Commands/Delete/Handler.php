@@ -21,9 +21,6 @@ class Handler
     {
         $news = $this->newsRepository->find($command->id);
 
-        //todo проверять наличие файла и удалять если он есть
-
-
         if (!$news) {
             throw new NewsNotFoundException('Новость не найдена');
         }

@@ -54,17 +54,6 @@
                         @enderror
                     </div>
 
-                    {{--<div class="mb-3">
-                        <label for="slug" class="form-label">Слаг</label>
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                               name="slug" value="{{ old('slug', $category->slug) }}" readonly>
-                        @error('slug')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                        <div class="form-text">Автоматическая генерации из названия.</div>
-                    </div>--}}
-
-
                     <div class="d-flex justify-content-between">
                         <div>
                             <span class="text-muted">ID: {{ $category->id }}</span>
@@ -81,24 +70,3 @@
     </div>
 @endsection
 
-@section('scripts')
-    {{--<script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const nameInput = document.getElementById('name');
-            const slugInput = document.getElementById('slug');
-            const originalSlug = "{{ $category->slug }}";
-
-            nameInput.addEventListener('input', function() {
-                // Только если slug пуст или равен оригинальному слагу, сгенерированному из прежнего названия
-                if (!slugInput.value || slugInput.value === originalSlug) {
-                    slugInput.value = nameInput.value
-                        .toLowerCase()
-                        .replace(/[^\w\s-]/g, '')
-                        .replace(/\s+/g, '-')
-                        .replace(/-+/g, '-')
-                        .trim();
-                }
-            });
-        });
-    </script>--}}
-@endsection

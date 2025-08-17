@@ -63,23 +63,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script>
-        /*    document.addEventListener('DOMContentLoaded', function() {
-                const nameInput = document.getElementById('name');
-                const slugInput = document.getElementById('slug');
-
-                nameInput.addEventListener('input', function() {
-                    if (!slugInput.value) {
-                        slugInput.value = nameInput.value
-                            .toLowerCase()
-                            .replace(/[^\w\s-]/g, '')
-                            .replace(/\s+/g, '-')
-                            .replace(/-+/g, '-')
-                            .trim();
-                    }
-                });
-            });*/
-    </script>
-@endsection
