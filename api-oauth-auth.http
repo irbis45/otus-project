@@ -1,0 +1,38 @@
+@host=http://localhost
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzdkZjRkMDgzNDM4ZmQwM2NhZGU1M2JiMzJmZWE1NmMxMDRmZDg5NWNiMGRkMDVlYmU3OWEwNmIzZWNjYWZjZTM2Zjc4NjQxZTdmNTAyNmQiLCJpYXQiOjE3NTUzNzAxMTIuNjc3NjQ5LCJuYmYiOjE3NTUzNzAxMTIuNjc3NjUsImV4cCI6MTc3MTI2NzcxMi42NzYyNCwic3ViIjoiMiIsInNjb3BlcyI6W119.dZanpqOvRH9ycuES-WytRx4CajUKfVzDwbdFOHNDeoIm909JwcV_JmKAzpDZslmji0LWbA-59CM-q8fqqwNaIUe6Q-zEuQs3TBDs5CJAsvXhOBUWHzCGL9gpFF2KP-G9srH4CNRWUNDsEkELzwomFsWIzFYITR0K_pMWST3XwPcBodk8f4BLHH27Qvpi2QluUB4WWXcUhhbCe1WRnqzJzQ-vVbTKXPtsiLyba-hQuhrWfW1v0o5-rnSbxlYOhD18oUvq5RuCl7csyMu4nL6D612l5AzRJ4tASoBI9yp-PmcKRS4MQvuhj844JVe4ZJ5Tz2JncmkCzo83yNvfiNflI4XiQmf_Dfx2eEYrwjB86pd5kqy45KqMQ-_TV-Tnl9OzCoWbwTntizBeFIxyLY6mi57ayHm4svkifDsJDBQoMKpHs84CLmPcaFVppHae04fydCh4ALYNG9MT4A3iYvRR5A1kV3ZZERLR1Sj7B3lVDIbgWnaqDpKAwzlOWWDdMkULSctWic9ppRnRxYx9Dg-ci3ktBiZ_nVC9-JfnGsntBg7szPolyeH43OCoNRvMvX16gGax0HzuuuiBTcri3_QznacjCbz1a2yH6WGplq161sd7cwRgFZzleU-_jk_tw-SRSPhZ5l5N4oGAg3aavatzei9V4LGPxbQjMc22i7rvNX4
+
+#POST {{host}}/api/v1/register
+#Content-Type: application/json
+#Accept: application/json
+#
+#{
+#    "name": "Maxim32",
+#    "email": "maxim332@example.com",
+#    "password": "password"
+#}
+
+###
+
+POST {{host}}/api/v1/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "editor@example.com",
+    "password": "password"
+}
+
+###
+
+
+###
+
+POST {{host}}/api/v1/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+}
+
+###

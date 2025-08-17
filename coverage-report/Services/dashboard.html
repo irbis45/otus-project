@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/html/app/Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css?v=11.0.9" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css?v=11.0.9" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css?v=11.0.9" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/var/www/html/app</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Services</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Core/Category/DTO/CategoryDTO.php.html#5">App\Services\Core\Category\DTO\CategoryDTO</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/PaginatedResult.php.html#7">App\Services\Core\Category\DTO\PaginatedResult</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/ResultDTO.php.html#5">App\Services\Core\Category\DTO\ResultDTO</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/Exceptions/CategoryAlreadyExistsException.php.html#7">App\Services\Core\Category\Exceptions\CategoryAlreadyExistsException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/Exceptions/CategorySaveException.php.html#7">App\Services\Core\Category\Exceptions\CategorySaveException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Command.php.html#5">App\Services\Core\Category\UseCases\Commands\Create\Command</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Handler.php.html#11">App\Services\Core\Category\UseCases\Commands\Create\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Command.php.html#5">App\Services\Core\Category\UseCases\Commands\Delete\Command</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Handler.php.html#8">App\Services\Core\Category\UseCases\Commands\Delete\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Command.php.html#5">App\Services\Core\Category\UseCases\Commands\Update\Command</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Handler.php.html#10">App\Services\Core\Category\UseCases\Commands\Update\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAll/Fetcher.php.html#10">App\Services\Core\Category\UseCases\Queries\FetchAll\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAll/Query.php.html#5">App\Services\Core\Category\UseCases\Queries\FetchAll\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAllPagination/Fetcher.php.html#10">App\Services\Core\Category\UseCases\Queries\FetchAllPagination\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAllPagination/Query.php.html#5">App\Services\Core\Category\UseCases\Queries\FetchAllPagination\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Fetcher.php.html#10">App\Services\Core\Category\UseCases\Queries\FetchById\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Query.php.html#5">App\Services\Core\Category\UseCases\Queries\FetchById\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchPopular/Query.php.html#5">App\Services\Core\Category\UseCases\Queries\FetchPopular\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/DTO/ResultDTO.php.html#5">App\Services\Core\News\DTO\ResultDTO</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Create/Handler.php.html#15">App\Services\Core\News\UseCases\Commands\Create\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Delete/Handler.php.html#10">App\Services\Core\News\UseCases\Commands\Delete\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Fetcher.php.html#15">App\Services\Core\News\UseCases\Queries\FetchAll\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Query.php.html#5">App\Services\Core\News\UseCases\Queries\FetchAll\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Fetcher.php.html#15">App\Services\Core\News\UseCases\Queries\FetchAllPagination\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchById/Fetcher.php.html#14">App\Services\Core\News\UseCases\Queries\FetchById\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchLatest/Query.php.html#5">App\Services\Core\News\UseCases\Queries\FetchLatest\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/PaginatedResult.php.html#7">App\Services\Core\User\DTO\PaginatedResult</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/ResultDTO.php.html#5">App\Services\Core\User\DTO\ResultDTO</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/UserDTO.php.html#7">App\Services\Core\User\DTO\UserDTO</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/Exceptions/UserEmailAlreadyExistsException.php.html#7">App\Services\Core\User\Exceptions\UserEmailAlreadyExistsException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/Exceptions/UserSaveException.php.html#7">App\Services\Core\User\Exceptions\UserSaveException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Command.php.html#5">App\Services\Core\User\UseCases\Commands\Create\Command</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Handler.php.html#12">App\Services\Core\User\UseCases\Commands\Create\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Command.php.html#5">App\Services\Core\User\UseCases\Commands\Delete\Command</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Handler.php.html#8">App\Services\Core\User\UseCases\Commands\Delete\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Command.php.html#5">App\Services\Core\User\UseCases\Commands\Update\Command</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Handler.php.html#10">App\Services\Core\User\UseCases\Commands\Update\Handler</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchAll\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Query.php.html#5">App\Services\Core\User\UseCases\Queries\FetchAll\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchAllPagination\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Query.php.html#5">App\Services\Core\User\UseCases\Queries\FetchAllPagination\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchSubscribedNews/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchSubscribedNews\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchyId\Fetcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Query.php.html#5">App\Services\Core\User\UseCases\Queries\FetchyId\Query</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/AuthService.php.html#11">App\Services\OAuth\AuthService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/Exceptions/UserSaveException.php.html#7">App\Services\OAuth\Exceptions\UserSaveException</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchLatest/Fetcher.php.html#15">App\Services\Core\News\UseCases\Queries\FetchLatest\Fetcher</a></td><td class="text-right">2%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchPopular/Fetcher.php.html#11">App\Services\Core\Category\UseCases\Queries\FetchPopular\Fetcher</a></td><td class="text-right">5%</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Login/Handler.php.html#10">App\Services\OAuth\UseCases\Commands\Login\Handler</a></td><td class="text-right">12%</td></tr>
+       <tr><td><a href="Core/News/DTO/PaginatedResult.php.html#7">App\Services\Core\News\DTO\PaginatedResult</a></td><td class="text-right">25%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Query.php.html#5">App\Services\Core\News\UseCases\Queries\FetchAllPagination\Query</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Register/Handler.php.html#12">App\Services\OAuth\UseCases\Commands\Register\Handler</a></td><td class="text-right">80%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchById/Fetcher.php.html#14">App\Services\Core\News\UseCases\Queries\FetchById\Fetcher</a></td><td class="text-right">132</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Create/Handler.php.html#15">App\Services\Core\News\UseCases\Commands\Create\Handler</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Fetcher.php.html#15">App\Services\Core\News\UseCases\Queries\FetchAll\Fetcher</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Fetcher.php.html#15">App\Services\Core\News\UseCases\Queries\FetchAllPagination\Fetcher</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchLatest/Fetcher.php.html#15">App\Services\Core\News\UseCases\Queries\FetchLatest\Fetcher</a></td><td class="text-right">52</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Handler.php.html#10">App\Services\Core\Category\UseCases\Commands\Update\Handler</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Handler.php.html#12">App\Services\Core\User\UseCases\Commands\Create\Handler</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Handler.php.html#11">App\Services\Core\Category\UseCases\Commands\Create\Handler</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Delete/Handler.php.html#10">App\Services\Core\News\UseCases\Commands\Delete\Handler</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Handler.php.html#10">App\Services\Core\User\UseCases\Commands\Update\Handler</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchAll\Fetcher</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchAllPagination\Fetcher</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchSubscribedNews/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchSubscribedNews\Fetcher</a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Handler.php.html#8">App\Services\Core\Category\UseCases\Commands\Delete\Handler</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Fetcher.php.html#10">App\Services\Core\Category\UseCases\Queries\FetchById\Fetcher</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Handler.php.html#8">App\Services\Core\User\UseCases\Commands\Delete\Handler</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Fetcher.php.html#11">App\Services\Core\User\UseCases\Queries\FetchyId\Fetcher</a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Login/Handler.php.html#10">App\Services\OAuth\UseCases\Commands\Login\Handler</a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="OAuth/AuthService.php.html#11">App\Services\OAuth\AuthService</a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Register/Handler.php.html#12">App\Services\OAuth\UseCases\Commands\Register\Handler</a></td><td class="text-right">3</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Core/Category/DTO/CategoryDTO.php.html#7"><abbr title="App\Services\Core\Category\DTO\CategoryDTO::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/PaginatedResult.php.html#15"><abbr title="App\Services\Core\Category\DTO\PaginatedResult::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/PaginatedResult.php.html#23"><abbr title="App\Services\Core\Category\DTO\PaginatedResult::getCurrentPage">getCurrentPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/PaginatedResult.php.html#28"><abbr title="App\Services\Core\Category\DTO\PaginatedResult::getPerPage">getPerPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/PaginatedResult.php.html#33"><abbr title="App\Services\Core\Category\DTO\PaginatedResult::hasMorePages">hasMorePages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/DTO/ResultDTO.php.html#10"><abbr title="App\Services\Core\Category\DTO\ResultDTO::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/Exceptions/CategoryAlreadyExistsException.php.html#9"><abbr title="App\Services\Core\Category\Exceptions\CategoryAlreadyExistsException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/Exceptions/CategorySaveException.php.html#9"><abbr title="App\Services\Core\Category\Exceptions\CategorySaveException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Command.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Commands\Create\Command::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Handler.php.html#13"><abbr title="App\Services\Core\Category\UseCases\Commands\Create\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Handler.php.html#18"><abbr title="App\Services\Core\Category\UseCases\Commands\Create\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Command.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Commands\Delete\Command::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Handler.php.html#10"><abbr title="App\Services\Core\Category\UseCases\Commands\Delete\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Handler.php.html#15"><abbr title="App\Services\Core\Category\UseCases\Commands\Delete\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Command.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Commands\Update\Command::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Handler.php.html#12"><abbr title="App\Services\Core\Category\UseCases\Commands\Update\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Handler.php.html#17"><abbr title="App\Services\Core\Category\UseCases\Commands\Update\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAll/Fetcher.php.html#15"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAll\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAll/Fetcher.php.html#24"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAll\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAll/Query.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAll\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAllPagination/Fetcher.php.html#15"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAllPagination\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAllPagination/Fetcher.php.html#25"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAllPagination\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAllPagination/Query.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAllPagination\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchAllPagination/Query.php.html#13"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchAllPagination\Query::fromPage">fromPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Fetcher.php.html#15"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchById\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Fetcher.php.html#26"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchById\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Query.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchById\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchPopular/Fetcher.php.html#27"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchPopular\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchPopular/Query.php.html#7"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchPopular\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/DTO/PaginatedResult.php.html#23"><abbr title="App\Services\Core\News\DTO\PaginatedResult::getCurrentPage">getCurrentPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/DTO/PaginatedResult.php.html#28"><abbr title="App\Services\Core\News\DTO\PaginatedResult::getPerPage">getPerPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/DTO/PaginatedResult.php.html#33"><abbr title="App\Services\Core\News\DTO\PaginatedResult::hasMorePages">hasMorePages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/DTO/ResultDTO.php.html#10"><abbr title="App\Services\Core\News\DTO\ResultDTO::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Create/Handler.php.html#17"><abbr title="App\Services\Core\News\UseCases\Commands\Create\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Create/Handler.php.html#25"><abbr title="App\Services\Core\News\UseCases\Commands\Create\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Delete/Handler.php.html#12"><abbr title="App\Services\Core\News\UseCases\Commands\Delete\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Delete/Handler.php.html#18"><abbr title="App\Services\Core\News\UseCases\Commands\Delete\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Fetcher.php.html#22"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAll\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Fetcher.php.html#33"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAll\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Query.php.html#7"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAll\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Fetcher.php.html#22"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAllPagination\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Fetcher.php.html#34"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAllPagination\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Query.php.html#13"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAllPagination\Query::fromPage">fromPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchById/Fetcher.php.html#21"><abbr title="App\Services\Core\News\UseCases\Queries\FetchById\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchById/Fetcher.php.html#34"><abbr title="App\Services\Core\News\UseCases\Queries\FetchById\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchLatest/Fetcher.php.html#35"><abbr title="App\Services\Core\News\UseCases\Queries\FetchLatest\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchLatest/Query.php.html#7"><abbr title="App\Services\Core\News\UseCases\Queries\FetchLatest\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/PaginatedResult.php.html#15"><abbr title="App\Services\Core\User\DTO\PaginatedResult::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/PaginatedResult.php.html#23"><abbr title="App\Services\Core\User\DTO\PaginatedResult::getCurrentPage">getCurrentPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/PaginatedResult.php.html#28"><abbr title="App\Services\Core\User\DTO\PaginatedResult::getPerPage">getPerPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/PaginatedResult.php.html#33"><abbr title="App\Services\Core\User\DTO\PaginatedResult::hasMorePages">hasMorePages</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/ResultDTO.php.html#10"><abbr title="App\Services\Core\User\DTO\ResultDTO::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/DTO/UserDTO.php.html#9"><abbr title="App\Services\Core\User\DTO\UserDTO::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/Exceptions/UserEmailAlreadyExistsException.php.html#9"><abbr title="App\Services\Core\User\Exceptions\UserEmailAlreadyExistsException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/Exceptions/UserSaveException.php.html#9"><abbr title="App\Services\Core\User\Exceptions\UserSaveException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Command.php.html#7"><abbr title="App\Services\Core\User\UseCases\Commands\Create\Command::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Handler.php.html#14"><abbr title="App\Services\Core\User\UseCases\Commands\Create\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Handler.php.html#20"><abbr title="App\Services\Core\User\UseCases\Commands\Create\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Command.php.html#7"><abbr title="App\Services\Core\User\UseCases\Commands\Delete\Command::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Handler.php.html#10"><abbr title="App\Services\Core\User\UseCases\Commands\Delete\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Handler.php.html#15"><abbr title="App\Services\Core\User\UseCases\Commands\Delete\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Command.php.html#7"><abbr title="App\Services\Core\User\UseCases\Commands\Update\Command::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Handler.php.html#12"><abbr title="App\Services\Core\User\UseCases\Commands\Update\Handler::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Handler.php.html#18"><abbr title="App\Services\Core\User\UseCases\Commands\Update\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Fetcher.php.html#16"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAll\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Fetcher.php.html#26"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAll\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Query.php.html#7"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAll\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Fetcher.php.html#16"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAllPagination\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Fetcher.php.html#27"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAllPagination\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Query.php.html#7"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAllPagination\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Query.php.html#13"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAllPagination\Query::fromPage">fromPage</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchSubscribedNews/Fetcher.php.html#16"><abbr title="App\Services\Core\User\UseCases\Queries\FetchSubscribedNews\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchSubscribedNews/Fetcher.php.html#26"><abbr title="App\Services\Core\User\UseCases\Queries\FetchSubscribedNews\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Fetcher.php.html#16"><abbr title="App\Services\Core\User\UseCases\Queries\FetchyId\Fetcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Fetcher.php.html#28"><abbr title="App\Services\Core\User\UseCases\Queries\FetchyId\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Query.php.html#7"><abbr title="App\Services\Core\User\UseCases\Queries\FetchyId\Query::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/AuthService.php.html#13"><abbr title="App\Services\OAuth\AuthService::attempt">attempt</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/Exceptions/UserSaveException.php.html#9"><abbr title="App\Services\OAuth\Exceptions\UserSaveException::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Login/Handler.php.html#16"><abbr title="App\Services\OAuth\UseCases\Commands\Login\Handler::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Register/Handler.php.html#19"><abbr title="App\Services\OAuth\UseCases\Commands\Register\Handler::handle">handle</abbr></a></td><td class="text-right">77%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchById/Fetcher.php.html#34"><abbr title="App\Services\Core\News\UseCases\Queries\FetchById\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Create/Handler.php.html#25"><abbr title="App\Services\Core\News\UseCases\Commands\Create\Handler::handle">handle</abbr></a></td><td class="text-right">90</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAll/Fetcher.php.html#33"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAll\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchAllPagination/Fetcher.php.html#34"><abbr title="App\Services\Core\News\UseCases\Queries\FetchAllPagination\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Core/News/UseCases/Queries/FetchLatest/Fetcher.php.html#35"><abbr title="App\Services\Core\News\UseCases\Queries\FetchLatest\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Update/Handler.php.html#17"><abbr title="App\Services\Core\Category\UseCases\Commands\Update\Handler::handle">handle</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Create/Handler.php.html#20"><abbr title="App\Services\Core\User\UseCases\Commands\Create\Handler::handle">handle</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Create/Handler.php.html#18"><abbr title="App\Services\Core\Category\UseCases\Commands\Create\Handler::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/News/UseCases/Commands/Delete/Handler.php.html#18"><abbr title="App\Services\Core\News\UseCases\Commands\Delete\Handler::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Update/Handler.php.html#18"><abbr title="App\Services\Core\User\UseCases\Commands\Update\Handler::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAll/Fetcher.php.html#26"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAll\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchAllPagination/Fetcher.php.html#27"><abbr title="App\Services\Core\User\UseCases\Queries\FetchAllPagination\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchSubscribedNews/Fetcher.php.html#26"><abbr title="App\Services\Core\User\UseCases\Queries\FetchSubscribedNews\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Commands/Delete/Handler.php.html#15"><abbr title="App\Services\Core\Category\UseCases\Commands\Delete\Handler::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Core/Category/UseCases/Queries/FetchById/Fetcher.php.html#26"><abbr title="App\Services\Core\Category\UseCases\Queries\FetchById\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Core/User/UseCases/Commands/Delete/Handler.php.html#15"><abbr title="App\Services\Core\User\UseCases\Commands\Delete\Handler::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Core/User/UseCases/Queries/FetchyId/Fetcher.php.html#28"><abbr title="App\Services\Core\User\UseCases\Queries\FetchyId\Fetcher::fetch">fetch</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/AuthService.php.html#13"><abbr title="App\Services\OAuth\AuthService::attempt">attempt</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Login/Handler.php.html#16"><abbr title="App\Services\OAuth\UseCases\Commands\Login\Handler::handle">handle</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="OAuth/UseCases/Commands/Register/Handler.php.html#19"><abbr title="App\Services\OAuth\UseCases\Commands\Register\Handler::handle">handle</abbr></a></td><td class="text-right">2</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 11.0.9</a> using <a href="https://www.php.net/" target="_top">PHP 8.4.8</a> and <a href="https://phpunit.de/">PHPUnit 11.5.18</a> at Mon Aug 4 13:56:31 MSK 2025.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js?v=11.0.9" type="text/javascript"></script>
+  <script src="../_js/d3.min.js?v=11.0.9" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js?v=11.0.9" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([46,2,1,1,1,0,0,0,0,1,1,17], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([79,0,0,0,0,0,0,0,1,0,1,21], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Core\/Category\/DTO\/CategoryDTO.php.html#5\">App\\Services\\Core\\Category\\DTO\\CategoryDTO<\/a>"],[0,4,"<a href=\"Core\/Category\/DTO\/PaginatedResult.php.html#7\">App\\Services\\Core\\Category\\DTO\\PaginatedResult<\/a>"],[0,1,"<a href=\"Core\/Category\/DTO\/ResultDTO.php.html#5\">App\\Services\\Core\\Category\\DTO\\ResultDTO<\/a>"],[0,1,"<a href=\"Core\/Category\/Exceptions\/CategoryAlreadyExistsException.php.html#7\">App\\Services\\Core\\Category\\Exceptions\\CategoryAlreadyExistsException<\/a>"],[100,0,"<a href=\"Core\/Category\/Exceptions\/CategoryNotFoundException.php.html#7\">App\\Services\\Core\\Category\\Exceptions\\CategoryNotFoundException<\/a>"],[0,1,"<a href=\"Core\/Category\/Exceptions\/CategorySaveException.php.html#7\">App\\Services\\Core\\Category\\Exceptions\\CategorySaveException<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Create\/Command.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Commands\\Create\\Command<\/a>"],[0,4,"<a href=\"Core\/Category\/UseCases\/Commands\/Create\/Handler.php.html#11\">App\\Services\\Core\\Category\\UseCases\\Commands\\Create\\Handler<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Delete\/Command.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Commands\\Delete\\Command<\/a>"],[0,3,"<a href=\"Core\/Category\/UseCases\/Commands\/Delete\/Handler.php.html#8\">App\\Services\\Core\\Category\\UseCases\\Commands\\Delete\\Handler<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Update\/Command.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Commands\\Update\\Command<\/a>"],[0,5,"<a href=\"Core\/Category\/UseCases\/Commands\/Update\/Handler.php.html#10\">App\\Services\\Core\\Category\\UseCases\\Commands\\Update\\Handler<\/a>"],[0,2,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#10\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAll\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAll\/Query.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAll\\Query<\/a>"],[0,2,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#10\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAllPagination\\Fetcher<\/a>"],[0,2,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAllPagination\\Query<\/a>"],[0,3,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchById\/Fetcher.php.html#10\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchById\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchById\/Query.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchById\\Query<\/a>"],[5.88235294117647,2,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchPopular\/Fetcher.php.html#11\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchPopular\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchPopular\/Query.php.html#5\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchPopular\\Query<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/AuthorDTO.php.html#7\">App\\Services\\Core\\News\\DTO\\AuthorDTO<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/CategoryDTO.php.html#6\">App\\Services\\Core\\News\\DTO\\CategoryDTO<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/NewsDTO.php.html#7\">App\\Services\\Core\\News\\DTO\\NewsDTO<\/a>"],[25,4,"<a href=\"Core\/News\/DTO\/PaginatedResult.php.html#7\">App\\Services\\Core\\News\\DTO\\PaginatedResult<\/a>"],[0,1,"<a href=\"Core\/News\/DTO\/ResultDTO.php.html#5\">App\\Services\\Core\\News\\DTO\\ResultDTO<\/a>"],[100,0,"<a href=\"Core\/News\/Exceptions\/NewsNotFoundException.php.html#7\">App\\Services\\Core\\News\\Exceptions\\NewsNotFoundException<\/a>"],[100,1,"<a href=\"Core\/News\/Exceptions\/NewsSaveException.php.html#7\">App\\Services\\Core\\News\\Exceptions\\NewsSaveException<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Create\/Command.php.html#6\">App\\Services\\Core\\News\\UseCases\\Commands\\Create\\Command<\/a>"],[0,10,"<a href=\"Core\/News\/UseCases\/Commands\/Create\/Handler.php.html#15\">App\\Services\\Core\\News\\UseCases\\Commands\\Create\\Handler<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Delete\/Command.php.html#5\">App\\Services\\Core\\News\\UseCases\\Commands\\Delete\\Command<\/a>"],[0,4,"<a href=\"Core\/News\/UseCases\/Commands\/Delete\/Handler.php.html#10\">App\\Services\\Core\\News\\UseCases\\Commands\\Delete\\Handler<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Update\/Command.php.html#6\">App\\Services\\Core\\News\\UseCases\\Commands\\Update\\Command<\/a>"],[94.73684210526315,12,"<a href=\"Core\/News\/UseCases\/Commands\/Update\/Handler.php.html#14\">App\\Services\\Core\\News\\UseCases\\Commands\\Update\\Handler<\/a>"],[0,7,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#15\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAll\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAll\/Query.php.html#5\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAll\\Query<\/a>"],[0,7,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#15\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAllPagination\\Fetcher<\/a>"],[33.33333333333333,2,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#5\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAllPagination\\Query<\/a>"],[0,11,"<a href=\"Core\/News\/UseCases\/Queries\/FetchById\/Fetcher.php.html#14\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchById\\Fetcher<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchById\/Query.php.html#5\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchById\\Query<\/a>"],[2.7777777777777777,7,"<a href=\"Core\/News\/UseCases\/Queries\/FetchLatest\/Fetcher.php.html#15\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchLatest\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchLatest\/Query.php.html#5\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchLatest\\Query<\/a>"],[0,4,"<a href=\"Core\/User\/DTO\/PaginatedResult.php.html#7\">App\\Services\\Core\\User\\DTO\\PaginatedResult<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/ResultDTO.php.html#5\">App\\Services\\Core\\User\\DTO\\ResultDTO<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/UserDTO.php.html#7\">App\\Services\\Core\\User\\DTO\\UserDTO<\/a>"],[0,1,"<a href=\"Core\/User\/Exceptions\/UserEmailAlreadyExistsException.php.html#7\">App\\Services\\Core\\User\\Exceptions\\UserEmailAlreadyExistsException<\/a>"],[100,0,"<a href=\"Core\/User\/Exceptions\/UserNotFoundException.php.html#7\">App\\Services\\Core\\User\\Exceptions\\UserNotFoundException<\/a>"],[0,1,"<a href=\"Core\/User\/Exceptions\/UserSaveException.php.html#7\">App\\Services\\Core\\User\\Exceptions\\UserSaveException<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Create\/Command.php.html#5\">App\\Services\\Core\\User\\UseCases\\Commands\\Create\\Command<\/a>"],[0,5,"<a href=\"Core\/User\/UseCases\/Commands\/Create\/Handler.php.html#12\">App\\Services\\Core\\User\\UseCases\\Commands\\Create\\Handler<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Delete\/Command.php.html#5\">App\\Services\\Core\\User\\UseCases\\Commands\\Delete\\Command<\/a>"],[0,3,"<a href=\"Core\/User\/UseCases\/Commands\/Delete\/Handler.php.html#8\">App\\Services\\Core\\User\\UseCases\\Commands\\Delete\\Handler<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Update\/Command.php.html#5\">App\\Services\\Core\\User\\UseCases\\Commands\\Update\\Command<\/a>"],[0,4,"<a href=\"Core\/User\/UseCases\/Commands\/Update\/Handler.php.html#10\">App\\Services\\Core\\User\\UseCases\\Commands\\Update\\Handler<\/a>"],[0,4,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#11\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAll\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAll\/Query.php.html#5\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAll\\Query<\/a>"],[0,4,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#11\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAllPagination\\Fetcher<\/a>"],[0,2,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#5\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAllPagination\\Query<\/a>"],[0,4,"<a href=\"Core\/User\/UseCases\/Queries\/FetchSubscribedNews\/Fetcher.php.html#11\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchSubscribedNews\\Fetcher<\/a>"],[0,3,"<a href=\"Core\/User\/UseCases\/Queries\/FetchyId\/Fetcher.php.html#11\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchyId\\Fetcher<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchyId\/Query.php.html#5\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchyId\\Query<\/a>"],[0,2,"<a href=\"OAuth\/AuthService.php.html#11\">App\\Services\\OAuth\\AuthService<\/a>"],[100,1,"<a href=\"OAuth\/Exceptions\/InvalidCredentialsException.php.html#9\">App\\Services\\OAuth\\Exceptions\\InvalidCredentialsException<\/a>"],[100,0,"<a href=\"OAuth\/Exceptions\/UserNotFoundException.php.html#9\">App\\Services\\OAuth\\Exceptions\\UserNotFoundException<\/a>"],[0,1,"<a href=\"OAuth\/Exceptions\/UserSaveException.php.html#7\">App\\Services\\OAuth\\Exceptions\\UserSaveException<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Login\/Command.php.html#7\">App\\Services\\OAuth\\UseCases\\Commands\\Login\\Command<\/a>"],[12.5,3,"<a href=\"OAuth\/UseCases\/Commands\/Login\/Handler.php.html#10\">App\\Services\\OAuth\\UseCases\\Commands\\Login\\Handler<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Logout\/Command.php.html#6\">App\\Services\\OAuth\\UseCases\\Commands\\Logout\\Command<\/a>"],[100,2,"<a href=\"OAuth\/UseCases\/Commands\/Logout\/Handler.php.html#10\">App\\Services\\OAuth\\UseCases\\Commands\\Logout\\Handler<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Register\/Command.php.html#7\">App\\Services\\OAuth\\UseCases\\Commands\\Register\\Command<\/a>"],[80,3,"<a href=\"OAuth\/UseCases\/Commands\/Register\/Handler.php.html#12\">App\\Services\\OAuth\\UseCases\\Commands\\Register\\Handler<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Core\/Category\/DTO\/CategoryDTO.php.html#7\">App\\Services\\Core\\Category\\DTO\\CategoryDTO::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/DTO\/PaginatedResult.php.html#15\">App\\Services\\Core\\Category\\DTO\\PaginatedResult::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/DTO\/PaginatedResult.php.html#23\">App\\Services\\Core\\Category\\DTO\\PaginatedResult::getCurrentPage<\/a>"],[0,1,"<a href=\"Core\/Category\/DTO\/PaginatedResult.php.html#28\">App\\Services\\Core\\Category\\DTO\\PaginatedResult::getPerPage<\/a>"],[0,1,"<a href=\"Core\/Category\/DTO\/PaginatedResult.php.html#33\">App\\Services\\Core\\Category\\DTO\\PaginatedResult::hasMorePages<\/a>"],[0,1,"<a href=\"Core\/Category\/DTO\/ResultDTO.php.html#10\">App\\Services\\Core\\Category\\DTO\\ResultDTO::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/Exceptions\/CategoryAlreadyExistsException.php.html#9\">App\\Services\\Core\\Category\\Exceptions\\CategoryAlreadyExistsException::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/Exceptions\/CategorySaveException.php.html#9\">App\\Services\\Core\\Category\\Exceptions\\CategorySaveException::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Create\/Command.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Commands\\Create\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Create\/Handler.php.html#13\">App\\Services\\Core\\Category\\UseCases\\Commands\\Create\\Handler::__construct<\/a>"],[0,3,"<a href=\"Core\/Category\/UseCases\/Commands\/Create\/Handler.php.html#18\">App\\Services\\Core\\Category\\UseCases\\Commands\\Create\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Delete\/Command.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Commands\\Delete\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Delete\/Handler.php.html#10\">App\\Services\\Core\\Category\\UseCases\\Commands\\Delete\\Handler::__construct<\/a>"],[0,2,"<a href=\"Core\/Category\/UseCases\/Commands\/Delete\/Handler.php.html#15\">App\\Services\\Core\\Category\\UseCases\\Commands\\Delete\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Update\/Command.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Commands\\Update\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Commands\/Update\/Handler.php.html#12\">App\\Services\\Core\\Category\\UseCases\\Commands\\Update\\Handler::__construct<\/a>"],[0,4,"<a href=\"Core\/Category\/UseCases\/Commands\/Update\/Handler.php.html#17\">App\\Services\\Core\\Category\\UseCases\\Commands\\Update\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#15\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAll\\Fetcher::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#24\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAll\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAll\/Query.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAll\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#15\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAllPagination\\Fetcher::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#25\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAllPagination\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAllPagination\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#13\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchAllPagination\\Query::fromPage<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchById\/Fetcher.php.html#15\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchById\\Fetcher::__construct<\/a>"],[0,2,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchById\/Fetcher.php.html#26\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchById\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchById\/Query.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchById\\Query::__construct<\/a>"],[100,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchPopular\/Fetcher.php.html#16\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchPopular\\Fetcher::__construct<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchPopular\/Fetcher.php.html#27\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchPopular\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/Category\/UseCases\/Queries\/FetchPopular\/Query.php.html#7\">App\\Services\\Core\\Category\\UseCases\\Queries\\FetchPopular\\Query::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/AuthorDTO.php.html#9\">App\\Services\\Core\\News\\DTO\\AuthorDTO::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/CategoryDTO.php.html#8\">App\\Services\\Core\\News\\DTO\\CategoryDTO::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/NewsDTO.php.html#9\">App\\Services\\Core\\News\\DTO\\NewsDTO::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/DTO\/PaginatedResult.php.html#15\">App\\Services\\Core\\News\\DTO\\PaginatedResult::__construct<\/a>"],[0,1,"<a href=\"Core\/News\/DTO\/PaginatedResult.php.html#23\">App\\Services\\Core\\News\\DTO\\PaginatedResult::getCurrentPage<\/a>"],[0,1,"<a href=\"Core\/News\/DTO\/PaginatedResult.php.html#28\">App\\Services\\Core\\News\\DTO\\PaginatedResult::getPerPage<\/a>"],[0,1,"<a href=\"Core\/News\/DTO\/PaginatedResult.php.html#33\">App\\Services\\Core\\News\\DTO\\PaginatedResult::hasMorePages<\/a>"],[0,1,"<a href=\"Core\/News\/DTO\/ResultDTO.php.html#10\">App\\Services\\Core\\News\\DTO\\ResultDTO::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/Exceptions\/NewsSaveException.php.html#9\">App\\Services\\Core\\News\\Exceptions\\NewsSaveException::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Create\/Command.php.html#8\">App\\Services\\Core\\News\\UseCases\\Commands\\Create\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Commands\/Create\/Handler.php.html#17\">App\\Services\\Core\\News\\UseCases\\Commands\\Create\\Handler::__construct<\/a>"],[0,9,"<a href=\"Core\/News\/UseCases\/Commands\/Create\/Handler.php.html#25\">App\\Services\\Core\\News\\UseCases\\Commands\\Create\\Handler::handle<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Delete\/Command.php.html#7\">App\\Services\\Core\\News\\UseCases\\Commands\\Delete\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Commands\/Delete\/Handler.php.html#12\">App\\Services\\Core\\News\\UseCases\\Commands\\Delete\\Handler::__construct<\/a>"],[0,3,"<a href=\"Core\/News\/UseCases\/Commands\/Delete\/Handler.php.html#18\">App\\Services\\Core\\News\\UseCases\\Commands\\Delete\\Handler::handle<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Update\/Command.php.html#8\">App\\Services\\Core\\News\\UseCases\\Commands\\Update\\Command::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Commands\/Update\/Handler.php.html#16\">App\\Services\\Core\\News\\UseCases\\Commands\\Update\\Handler::__construct<\/a>"],[94.5945945945946,11,"<a href=\"Core\/News\/UseCases\/Commands\/Update\/Handler.php.html#31\">App\\Services\\Core\\News\\UseCases\\Commands\\Update\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#22\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAll\\Fetcher::__construct<\/a>"],[0,6,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#33\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAll\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAll\/Query.php.html#7\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAll\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#22\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAllPagination\\Fetcher::__construct<\/a>"],[0,6,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#34\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAllPagination\\Fetcher::fetch<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#7\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAllPagination\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#13\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchAllPagination\\Query::fromPage<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchById\/Fetcher.php.html#21\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchById\\Fetcher::__construct<\/a>"],[0,10,"<a href=\"Core\/News\/UseCases\/Queries\/FetchById\/Fetcher.php.html#34\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchById\\Fetcher::fetch<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchById\/Query.php.html#7\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchById\\Query::__construct<\/a>"],[100,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchLatest\/Fetcher.php.html#22\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchLatest\\Fetcher::__construct<\/a>"],[0,6,"<a href=\"Core\/News\/UseCases\/Queries\/FetchLatest\/Fetcher.php.html#35\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchLatest\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/News\/UseCases\/Queries\/FetchLatest\/Query.php.html#7\">App\\Services\\Core\\News\\UseCases\\Queries\\FetchLatest\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/PaginatedResult.php.html#15\">App\\Services\\Core\\User\\DTO\\PaginatedResult::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/PaginatedResult.php.html#23\">App\\Services\\Core\\User\\DTO\\PaginatedResult::getCurrentPage<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/PaginatedResult.php.html#28\">App\\Services\\Core\\User\\DTO\\PaginatedResult::getPerPage<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/PaginatedResult.php.html#33\">App\\Services\\Core\\User\\DTO\\PaginatedResult::hasMorePages<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/ResultDTO.php.html#10\">App\\Services\\Core\\User\\DTO\\ResultDTO::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/DTO\/UserDTO.php.html#9\">App\\Services\\Core\\User\\DTO\\UserDTO::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/Exceptions\/UserEmailAlreadyExistsException.php.html#9\">App\\Services\\Core\\User\\Exceptions\\UserEmailAlreadyExistsException::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/Exceptions\/UserSaveException.php.html#9\">App\\Services\\Core\\User\\Exceptions\\UserSaveException::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Create\/Command.php.html#7\">App\\Services\\Core\\User\\UseCases\\Commands\\Create\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Create\/Handler.php.html#14\">App\\Services\\Core\\User\\UseCases\\Commands\\Create\\Handler::__construct<\/a>"],[0,4,"<a href=\"Core\/User\/UseCases\/Commands\/Create\/Handler.php.html#20\">App\\Services\\Core\\User\\UseCases\\Commands\\Create\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Delete\/Command.php.html#7\">App\\Services\\Core\\User\\UseCases\\Commands\\Delete\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Delete\/Handler.php.html#10\">App\\Services\\Core\\User\\UseCases\\Commands\\Delete\\Handler::__construct<\/a>"],[0,2,"<a href=\"Core\/User\/UseCases\/Commands\/Delete\/Handler.php.html#15\">App\\Services\\Core\\User\\UseCases\\Commands\\Delete\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Update\/Command.php.html#7\">App\\Services\\Core\\User\\UseCases\\Commands\\Update\\Command::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Commands\/Update\/Handler.php.html#12\">App\\Services\\Core\\User\\UseCases\\Commands\\Update\\Handler::__construct<\/a>"],[0,3,"<a href=\"Core\/User\/UseCases\/Commands\/Update\/Handler.php.html#18\">App\\Services\\Core\\User\\UseCases\\Commands\\Update\\Handler::handle<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#16\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAll\\Fetcher::__construct<\/a>"],[0,3,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAll\/Fetcher.php.html#26\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAll\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAll\/Query.php.html#7\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAll\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#16\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAllPagination\\Fetcher::__construct<\/a>"],[0,3,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAllPagination\/Fetcher.php.html#27\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAllPagination\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#7\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAllPagination\\Query::__construct<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchAllPagination\/Query.php.html#13\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchAllPagination\\Query::fromPage<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchSubscribedNews\/Fetcher.php.html#16\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchSubscribedNews\\Fetcher::__construct<\/a>"],[0,3,"<a href=\"Core\/User\/UseCases\/Queries\/FetchSubscribedNews\/Fetcher.php.html#26\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchSubscribedNews\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchyId\/Fetcher.php.html#16\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchyId\\Fetcher::__construct<\/a>"],[0,2,"<a href=\"Core\/User\/UseCases\/Queries\/FetchyId\/Fetcher.php.html#28\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchyId\\Fetcher::fetch<\/a>"],[0,1,"<a href=\"Core\/User\/UseCases\/Queries\/FetchyId\/Query.php.html#7\">App\\Services\\Core\\User\\UseCases\\Queries\\FetchyId\\Query::__construct<\/a>"],[0,2,"<a href=\"OAuth\/AuthService.php.html#13\">App\\Services\\OAuth\\AuthService::attempt<\/a>"],[100,1,"<a href=\"OAuth\/Exceptions\/InvalidCredentialsException.php.html#11\">App\\Services\\OAuth\\Exceptions\\InvalidCredentialsException::__construct<\/a>"],[0,1,"<a href=\"OAuth\/Exceptions\/UserSaveException.php.html#9\">App\\Services\\OAuth\\Exceptions\\UserSaveException::__construct<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Login\/Command.php.html#9\">App\\Services\\OAuth\\UseCases\\Commands\\Login\\Command::__construct<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Login\/Handler.php.html#12\">App\\Services\\OAuth\\UseCases\\Commands\\Login\\Handler::__construct<\/a>"],[0,2,"<a href=\"OAuth\/UseCases\/Commands\/Login\/Handler.php.html#16\">App\\Services\\OAuth\\UseCases\\Commands\\Login\\Handler::handle<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Logout\/Command.php.html#8\">App\\Services\\OAuth\\UseCases\\Commands\\Logout\\Command::__construct<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Logout\/Handler.php.html#12\">App\\Services\\OAuth\\UseCases\\Commands\\Logout\\Handler::__construct<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Logout\/Handler.php.html#19\">App\\Services\\OAuth\\UseCases\\Commands\\Logout\\Handler::handle<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Register\/Command.php.html#9\">App\\Services\\OAuth\\UseCases\\Commands\\Register\\Command::__construct<\/a>"],[100,1,"<a href=\"OAuth\/UseCases\/Commands\/Register\/Handler.php.html#14\">App\\Services\\OAuth\\UseCases\\Commands\\Register\\Handler::__construct<\/a>"],[77.77777777777779,2,"<a href=\"OAuth\/UseCases\/Commands\/Register\/Handler.php.html#19\">App\\Services\\OAuth\\UseCases\\Commands\\Register\\Handler::handle<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

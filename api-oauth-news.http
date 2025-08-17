@@ -1,0 +1,61 @@
+@host=http://localhost
+@token=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNzFjZDg1Njk4NzFlYzBjMzY1NGMxN2ViMDhkYjViMzYzM2Q2ODhlNWQxMmJjMGNjMTA4MDk0MjdjOGU0NTI0MzI2ODNiZWQ3OWViOWE0ZDQiLCJpYXQiOjE3NTUzNzAxNzIuMjI2NjIzLCJuYmYiOjE3NTUzNzAxNzIuMjI2NjI0LCJleHAiOjE3NzEyNjc3NzIuMjI1NTg2LCJzdWIiOiIyIiwic2NvcGVzIjpbXX0.VeYKh1Qn-CB4Ng65t3UqoFz8Zln-fHngRQVRenjt6tR_EImaAkf2dWSkqxdmKrVqRpbhJBKBQBL-WxuJtQU40Js38Fr-qYYnRBhWAX5y5EvjxEk-URGn6NsJlZ1ps4-HNNMAfR4PfgkRaxyTOQUCNWiXh61pmLWBR6wAZahR_OsnG2HFAGFiH_C_i5ktFfnIaLDUUDLfJHIPHTVjEeWlGDSQNf0KhQHpi1zR8Sr8f_Yq8SdfrU_ayDd-zU70NNJQyS1PGpGjDBIr-GEyzzYS_M68FabW4f_mSooDXyNSpHc-J5ul9E_P16ghOxHpt2PtNSMgWAPpWcvC_Bfr-sB1gOsZTydI6_Vxt1Me1OOZ-wn-BYpvQ-fSknDqXyN31svT5xt6q2Unpuv9Ici0wsamVHcsFL0omye9XTWmsRSISKihSbt-hOyed2ORL9f9616MvYiutfv2gn8vgF5lGbH46qIDJ6bIPcoVol3Rqk-CKZ0pXyYUp4wRnRSlJ4Tm3CrelGv_Lk36uiMRTlFUQ_hHqOKwSjI5c1qpcjZB5bt63o5BQS50zXNLJjDcZ4ZmiC1HFfPpq9l9vORMaWKy_YdhfuOYaHm5dRxRbszQjfZEBLTzZBdZn6qFi1tp4f0k09tRgqQwq6396qvZncRntmsphh9vMq7Q4jHeBE1s2xa6Cgg
+
+GET {{host}}/api/v1/news
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+
+###
+
+GET {{host}}/api/v1/news/2
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###
+
+POST {{host}}/api/v1/news
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Заголовок новости 99999999",
+    "excerpt": "Тест",
+    "content": "Тест новости",
+    "thumbnail": null,
+    "category_id": 2,
+    "published_at": "2025-08-05 14:47",
+    "active":  true,
+    "featured":  false,
+    "thumbnail_url": "https://example.com/thumbnail.jpg"
+}
+
+###
+
+PUT {{host}}/api/v1/news/17
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+{
+    "title": "Заголовок новости 34634634",
+    "excerpt": "Тест22",
+    "content": "Тест новости",
+    "category_id": 2,
+    "thumbnail": null,
+    "published_at": "2025-08-10 14:47",
+    "active":  true,
+    "featured":  false
+}
+
+###
+
+DELETE {{host}}/api/v1/news/17
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer {{token}}
+
+###

@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+
+.user-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+.placeholder-300x200 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3/2;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-weight: bold;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.placeholder-300x200::after {
+    content: "Новость";
+    position: absolute;
+}
+
+.placeholder-400x225 {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+    font-weight: bold;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.placeholder-400x225::after {
+    content: "Новостной портал";
+    position: absolute;
+}
+
+/* Для поддержки старых браузеров, у которых нет поддержки aspect-ratio */
+@supports not (aspect-ratio: 1) {
+    .placeholder-300x200 {
+        position: relative;
+    }
+
+    .placeholder-300x200::before {
+        content: "";
+        display: block;
+        padding-top: 66.67%; /* 2:3 аспект */
+    }
+
+    .placeholder-400x225 {
+        position: relative;
+    }
+
+    .placeholder-400x225::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%; /* 9:16 аспект */
+    }
+
+    .placeholder-300x200::after,
+    .placeholder-400x225::after {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
