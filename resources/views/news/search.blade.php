@@ -12,15 +12,15 @@
      */
 @endphp
 
-@section('title', 'Поиск: ' . $searchQuery)
+@section('title', __('news.search.title', ['query' => $searchQuery]))
 
 @section('content')
     <div class="row">
         <div class="col-md-8">
-            <h1 class="mb-4">Результаты поиска: "{{ $searchQuery }}"</h1>
+            <h1 class="mb-4">{{ __('news.search.results', ['query' => $searchQuery]) }}</h1>
 
             @if($news->total() > 0)
-                <p class="text-muted mb-4">Найдено {{ $news->total() }} {{ \Illuminate\Support\Str::plural('новость', $news->total(), ['новость', 'новости', 'новостей']) }}</p>
+                <p class="text-muted mb-4">{{ __('news.search.found', ['count' => $news->total(), 'news' => trans_choice('новостей|новость|новости', $news->total())]) }}</p>
 
                 @foreach($news as $item)
                     <div class="card mb-4 news-card shadow-sm">
@@ -49,7 +49,7 @@
                                         </small>
                                     </p>
                                     <p class="card-text">{{ $item->excerpt ?: \Illuminate\Support\Str::limit(strip_tags($item->content), 150) }}</p>
-                                    <a href="{{ route('news.show', $item->slug) }}" class="btn btn-sm btn-outline-primary">Читать полностью</a>
+                                    <a href="{{ route('news.show', $item->slug) }}" class="btn btn-sm btn-outline-primary">{{ __('home.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -64,16 +64,16 @@
                 </div>
             @else
                 <div class="alert alert-info">
-                    <i class="fas fa-info-circle me-2"></i>По вашему запросу ничего не найдено. Попробуйте изменить поисковый запрос.
+                    <i class="fas fa-info-circle me-2"></i>{{ __('news.search.nothing_found') }}
                 </div>
-                <a href="{{ route('home') }}" class="btn btn-primary">Вернуться на главную</a>
+                <a href="{{ route('home') }}" class="btn btn-primary">{{ __('news.search.back_to_home') }}</a>
             @endif
         </div>
 
         <div class="col-md-4">
             <div class="card shadow-sm mb-4">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">Категории</h5>
+                    <h5 class="card-title mb-0">{{ __('home.categories') }}</h5>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush" style="max-height: 300px; overflow-y: auto;">

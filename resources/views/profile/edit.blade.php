@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Мой профиль')
+@section('title', __('profile.title'))
 
 @section('content')
 <div class="container">
@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">Редактирование профиля</h5>
+                    <h5 class="card-title mb-0">{{ __('profile.edit.title') }}</h5>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('profile.update') }}">
@@ -16,7 +16,7 @@
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Имя</label>
+                            <label for="name" class="form-label">{{ __('profile.edit.name') }}</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $user->name) }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -24,7 +24,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
+                            <label for="email" class="form-label">{{ __('profile.edit.email') }}</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $user->email) }}" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -32,11 +32,11 @@
                         </div>
 
                         <hr>
-                        <h5 class="mb-3">Изменение пароля</h5>
-                        <p class="text-muted mb-3">Оставьте поля пустыми, если не хотите менять пароль</p>
+                        <h5 class="mb-3">{{ __('profile.edit.password.title') }}</h5>
+                        <p class="text-muted mb-3">{{ __('profile.edit.password.description') }}</p>
 
                         <div class="mb-3">
-                            <label for="current_password" class="form-label">Текущий пароль</label>
+                            <label for="current_password" class="form-label">{{ __('profile.edit.password.current') }}</label>
                             <input type="password" class="form-control @error('current_password') is-invalid @enderror" id="current_password" name="current_password">
                             @error('current_password')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Новый пароль</label>
+                            <label for="password" class="form-label">{{ __('profile.edit.password.new') }}</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -52,12 +52,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Подтвердите новый пароль</label>
+                            <label for="password_confirmation" class="form-label">{{ __('profile.edit.password.confirm') }}</label>
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Сохранить изменения</button>
+                            <button type="submit" class="btn btn-primary">{{ __('profile.edit.save') }}</button>
                         </div>
                     </form>
                 </div>

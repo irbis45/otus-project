@@ -40,21 +40,22 @@ class Fetcher
         $statusEnum = $comment->getStatus();
 
         return new CommentDTO(
-            id:                 $comment->getId(),
-            text:               $comment->getText(),
+            id: $comment->getId(),
+            text: $comment->getText(),
             author:            $author ? new AuthorDTO(
-                                    id: $author->getId(),
-                                    name: $author->getName(),
-                                    email: $author->getEmail(),
-                                ) : null,
+                    id: $author->getId(),
+                    name: $author->getName(),
+                    email: $author->getEmail(),
+                ) : null,
             newsId:             $comment->getNewsId(),
-            status:             new StatusDTO(
-                                    value: $statusEnum->value,
-                                    label: $statusEnum->label(),
-                                ),
-            parentId:           $comment->getParentId(),
-            createdAt:          $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()) : null,
-            updatedAt:          $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()) : null,
+            status: new StatusDTO(
+                value: $statusEnum->value,
+                label: $statusEnum->label(),
+            ),
+            parentId: $comment->getParentId(),
+            createdAt: $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()->toDateTimeString()) : null,
+            updatedAt: $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()->toDateTimeString()) : null,
+            replies: [],
         );
     }
 }

@@ -10,7 +10,7 @@ final readonly class CommentDTO
         public int $id,
         public string $text,
         public ?AuthorDTO $author,
-        public int $newsId,
+        public ?int $newsId,
         public ?StatusDTO $status,
         public ?int $parentId,
         public ?DateTimeImmutable $createdAt,

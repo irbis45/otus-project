@@ -1,5 +1,6 @@
 # Laravel
 sail artisan migrate:fresh --env=testing
+sail artisan migrate:fresh --seed
 XDEBUG_MODE=coverage sail test --coverage-html coverage-report
 
 # Documentation

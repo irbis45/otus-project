@@ -78,4 +78,77 @@ class CommentRepository implements CommentRepositoryInterface
     {
         return $comment->delete();
     }
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @param string|null $search
+     * @param int|null $newsId
+     * @param string|null $status
+     *
+     * @return array
+     */
+    public function searchPaginated(int $limit, int $offset, ?string $search = null, ?int $newsId = null, ?string $status = null): array
+    {
+        $query = Comment::query()
+            ->orderBy('id', 'desc');
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('text', 'like', "%{$search}%")
+                  ->orWhereHas('author', function ($authorQuery) use ($search) {
+                      $authorQuery->where('name', 'like', "%{$search}%")
+                                 ->orWhere('email', 'like', "%{$search}%");
+                  })
+                  ->orWhereHas('newsItem', function ($newsQuery) use ($search) {
+                      $newsQuery->where('title', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        if ($newsId) {
+            $query->where('news_id', $newsId);
+        }
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        return $query->limit($limit)->offset($offset)->get()->all();
+    }
+
+    /**
+     * @param string|null $search
+     * @param int|null $newsId
+     * @param string|null $status
+     *
+     * @return int
+     */
+    public function searchCount(?string $search = null, ?int $newsId = null, ?string $status = null): int
+    {
+        $query = Comment::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('text', 'like', "%{$search}%")
+                  ->orWhereHas('author', function ($authorQuery) use ($search) {
+                      $authorQuery->where('name', 'like', "%{$search}%")
+                                 ->orWhere('email', 'like', "%{$search}%");
+                  })
+                  ->orWhereHas('newsItem', function ($newsQuery) use ($search) {
+                      $newsQuery->where('title', 'like', "%{$search}%");
+                  });
+            });
+        }
+
+        if ($newsId) {
+            $query->where('news_id', $newsId);
+        }
+
+        if ($status) {
+            $query->where('status', $status);
+        }
+
+        return $query->count();
+    }
 }

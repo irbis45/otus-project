@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\News;
 
-use App\Application\Core\News\UseCases\Queries\FetchAllPagination\Fetcher;
-use App\Application\Core\News\UseCases\Queries\FetchAllPagination\Query;
+use App\Application\Core\News\UseCases\Queries\SearchNews\Fetcher;
+use App\Application\Core\News\UseCases\Queries\SearchNews\Query;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -20,10 +20,7 @@ class IndexController extends Controller
     {
         Gate::authorize('news.viewAny');
 
-        $page = max(1, (int) $request->get('page', 1));
-        $perPage = 10;
-
-        $query = Query::fromPage($page, $perPage);
+        $query = Query::fromRequest($request->all());
         $paginatedResult = $fetcher->fetch($query);
 
         $news = new LengthAwarePaginator(

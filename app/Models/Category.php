@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Traits\HasSlug;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 
 class Category extends BaseModel
 {
-    use HasSlug;
+    use HasFactory, HasSlug;
 
     /** @var bool  */
     public $timestamps = false;

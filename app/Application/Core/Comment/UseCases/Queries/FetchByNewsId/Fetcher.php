@@ -81,8 +81,8 @@ class Fetcher
                     label: $statusEnum->label(),
                 ),
             parentId: $comment->getParentId(),
-            createdAt: $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()) : null,
-            updatedAt: $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()) : null,
+            createdAt: $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()->toDateTimeString()) : null,
+            updatedAt: $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()->toDateTimeString()) : null,
             replies: array_map(fn(Comment $reply) => $this->toCommentDTO($reply, $authors), $comment->getReplies() ?? [])
         );
     }

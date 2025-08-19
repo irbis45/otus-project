@@ -2,12 +2,13 @@
 
 namespace App\Application\Core\Comment\UseCases\Commands\Update;
 
+use App\Application\Core\Comment\DTO\AuthorDTO;
 use App\Application\Core\Comment\DTO\CommentDTO;
 use App\Application\Core\Comment\DTO\StatusDTO;
 use App\Application\Core\Comment\Exceptions\CommentNotFoundException;
 use App\Application\Core\Comment\Repositories\CommentRepositoryInterface;
 use App\Application\Core\User\Repositories\UserRepositoryInterface;
-use App\Application\Core\Comment\DTO\AuthorDTO;
+use DateTimeImmutable;
 
 class Handler
 {
@@ -33,26 +34,27 @@ class Handler
 
         $this->commentRepository->save($comment);
 
-        $author   = $comment->getAuthorId() ? $this->userRepository->find($comment->getAuthorId()) : null;
+        $author = $comment->getAuthorId() ? $this->userRepository->find($comment->getAuthorId()) : null;
 
         $statusEnum = $comment->getStatus();
 
         return new CommentDTO(
-            id:                 $comment->getId(),
-            text:               $comment->getText(),
+            id: $comment->getId(),
+            text: $comment->getText(),
             author:            $author ? new AuthorDTO(
-                                    id: $author->getId(),
-                                    name: $author->getName(),
-                                    email: $author->getEmail(),
-                                ) : null,
+                    id: $author->getId(),
+                    name: $author->getName(),
+                    email: $author->getEmail(),
+                ) : null,
             newsId:             $comment->getNewsId(),
-            status:             new StatusDTO(
-                                    value: $statusEnum->value,
-                                    label: $statusEnum->label(),
-                                ),
-            parentId:           $comment->getParentId(),
-            createdAt:          $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()) : null,
-            updatedAt:          $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()) : null,
+            status: new StatusDTO(
+                value: $statusEnum->value,
+                label: $statusEnum->label(),
+            ),
+            parentId: $comment->getParentId(),
+            createdAt: $comment->getCreatedAt() ? new DateTimeImmutable($comment->getCreatedAt()->toDateTimeString()) : null,
+            updatedAt: $comment->getUpdatedAt() ? new DateTimeImmutable($comment->getUpdatedAt()->toDateTimeString()) : null,
+            replies: [],
         );
     }
 }

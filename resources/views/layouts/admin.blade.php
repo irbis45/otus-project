@@ -99,7 +99,7 @@
         }
     </style>
 
-    @yield('styles')
+    @stack('styles')
 </head>
 <body>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
@@ -151,6 +151,6 @@
 <!-- Bootstrap JS Bundle -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-@yield('scripts')
+@stack('scripts')
 </body>
 </html>

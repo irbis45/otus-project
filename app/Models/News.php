@@ -217,7 +217,7 @@ class News extends BaseModel
      */
     public function scopeOfUser(Builder $query, int $userId): Builder
     {
-        return $query->where('user_id', $userId);
+        return $query->where('author_id', $userId);
     }
 
     /**

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use App\Models\News;
+use App\Models\User;
 
 class Comment extends BaseModel
 {
@@ -14,7 +16,7 @@ class Comment extends BaseModel
 
     /** @var string[]  */
     protected $fillable = [
-        'user_id',
+        'author_id',
         'parent_id',
         'news_id',
         'text',
@@ -77,6 +79,16 @@ class Comment extends BaseModel
     {
         return $this->{$this->getColumnName('news_id')};
     }
+
+/*    public function getNewsItem(): ?News
+    {
+        return $this->newsItem;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }*/
 
     public function getCreatedAt(): ?Carbon {
         return $this->{$this->getColumnName('created_at')};

@@ -41,9 +41,9 @@ class Fetcher
             id:              $user->getId(),
             name:            $user->getName(),
             email:           $user->getEmail(),
-            createdAt:       $user->getCreatedAt() ? new DateTimeImmutable($user->getCreatedAt()) : null,
-            emailVerifiedAt: $user->getEmailVerifiedAt()? new DateTimeImmutable($user->getEmailVerifiedAt()) : null,
-            updatedAt:       $user->getUpdatedAt() ? new DateTimeImmutable($user->getUpdatedAt()) : null,
+            createdAt:       $user->getCreatedAt() ? new DateTimeImmutable($user->getCreatedAt()->toDateTimeString()) : null,
+            emailVerifiedAt: $user->getEmailVerifiedAt() ? new DateTimeImmutable($user->getEmailVerifiedAt()->toDateTimeString()) : null,
+            updatedAt:       $user->getUpdatedAt() ? new DateTimeImmutable($user->getUpdatedAt()->toDateTimeString()) : null,
             roles:           $roles,
         );
     }

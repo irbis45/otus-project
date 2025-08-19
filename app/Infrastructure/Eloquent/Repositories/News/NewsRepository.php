@@ -43,6 +43,23 @@ class NewsRepository implements NewsRepositoryInterface
                        ->all();
     }
 
+    public function fetchPaginatedWithFilters(int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc', ?string $status = null): array
+    {
+        [$orderBy, $direction] = $this->normalizeOrderBy($orderBy, $direction);
+
+        $query = News::query();
+
+        if ($status !== null && $status !== '') {
+            $query->where('active', $status === '1');
+        }
+
+        return $query->orderBy($orderBy, $direction)
+                       ->limit($limit)
+                       ->offset($offset)
+                       ->get()
+                       ->all();
+    }
+
 
     public function fetchByCategoryPaginated(
         int $categoryId,
@@ -82,6 +99,17 @@ class NewsRepository implements NewsRepositoryInterface
 
         if ($onlyPublished) {
             $query->published();
+        }
+
+        return $query->count();
+    }
+
+    public function countWithFilters(?string $status = null): int
+    {
+        $query = News::query();
+
+        if ($status !== null && $status !== '') {
+            $query->where('active', $status === '1');
         }
 
         return $query->count();
@@ -145,8 +173,10 @@ class NewsRepository implements NewsRepositoryInterface
                    ->count();
     }
 
-    public function searchPaginated(string $query, int $limit, int $offset): array
+    public function searchPaginated(string $query, int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc'): array
     {
+        [$orderBy, $direction] = $this->normalizeOrderBy($orderBy, $direction);
+
         $newsQ = News::query();
 
         return $newsQ
@@ -155,7 +185,7 @@ class NewsRepository implements NewsRepositoryInterface
                 $q->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($query) . '%'])
                   ->orWhereRaw('LOWER(content) LIKE ?', ['%' . strtolower($query) . '%']);
             })
-            ->latest('published_at')
+            ->orderBy($orderBy, $direction)
             ->limit($limit)
             ->offset($offset)
             ->get()
@@ -166,9 +196,38 @@ class NewsRepository implements NewsRepositoryInterface
     {
         $newsQ = News::query();
 
-
         return $newsQ
             ->published()
+            ->where(function ($q) use ($query) {
+                $q->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($query) . '%'])
+                  ->orWhereRaw('LOWER(content) LIKE ?', ['%' . strtolower($query) . '%']);
+            })
+            ->count();
+    }
+
+    public function searchPaginatedAdmin(string $query, int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc'): array
+    {
+        [$orderBy, $direction] = $this->normalizeOrderBy($orderBy, $direction);
+
+        $newsQ = News::query();
+
+        return $newsQ
+            ->where(function ($q) use ($query) {
+                $q->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($query) . '%'])
+                  ->orWhereRaw('LOWER(content) LIKE ?', ['%' . strtolower($query) . '%']);
+            })
+            ->orderBy($orderBy, $direction)
+            ->limit($limit)
+            ->offset($offset)
+            ->get()
+            ->all();
+    }
+
+    public function countSearchAdmin(string $query): int
+    {
+        $newsQ = News::query();
+
+        return $newsQ
             ->where(function ($q) use ($query) {
                 $q->whereRaw('LOWER(title) LIKE ?', ['%' . strtolower($query) . '%'])
                   ->orWhereRaw('LOWER(content) LIKE ?', ['%' . strtolower($query) . '%']);
@@ -185,6 +244,68 @@ class NewsRepository implements NewsRepositoryInterface
     }
 
     /**
+     * Получить список новостей для фильтра (только ID и заголовок)
+     *
+     * @return array
+     */
+    public function fetchForFilter(): array
+    {
+        return News::query()
+            ->select('id', 'title')
+            ->orderBy('title')
+            ->get()
+            ->map(function ($news) {
+                return [
+                    'id' => $news->id,
+                    'title' => $news->title
+                ];
+            })
+            ->toArray();
+    }
+
+    /**
+     * @param array $ids
+     *
+     * @return array
+     */
+    public function findByIds(array $ids): array
+    {
+        if (empty($ids)) {
+            return [];
+        }
+        
+        return News::query()
+            ->whereIn('id', $ids)
+            ->get()
+            ->keyBy('id')
+            ->all();
+    }
+
+    /**
+     * Поиск новостей для автокомплита
+     *
+     * @param string $query
+     * @param int $limit
+     * @return array
+     */
+    public function searchForAutocomplete(string $query, int $limit = 10): array
+    {
+        return News::query()
+            ->select('id', 'title')
+            ->where('title', 'like', "%{$query}%")
+            ->orderBy('title')
+            ->limit($limit)
+            ->get()
+            ->map(function ($news) {
+                return [
+                    'id' => $news->id,
+                    'title' => $news->title
+                ];
+            })
+            ->toArray();
+    }
+
+    /**
      * Проверяет и нормализует параметры сортировки
      *
      * @param string $orderBy Запрошенное поле сортировки
@@ -194,7 +315,7 @@ class NewsRepository implements NewsRepositoryInterface
      */
     private function normalizeOrderBy(string $orderBy, string $direction): array
     {
-        $allowedOrderBy = ['id', 'created_at', 'title'];
+        $allowedOrderBy = ['id', 'created_at', 'title', 'published_at'];
         $direction = strtolower($direction);
 
         if (!in_array($orderBy, $allowedOrderBy, true)) {

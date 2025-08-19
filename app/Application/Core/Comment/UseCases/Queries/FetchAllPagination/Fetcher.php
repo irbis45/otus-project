@@ -38,8 +38,8 @@ class Fetcher
             $statusEnum = $comment->getStatus();
 
             return new CommentDTO(
-                id:                                   $comment->getId(),
-                text:                                 $comment->getText(),
+                id: $comment->getId(),
+                text: $comment->getText(),
                 author:                               isset(
                                         $authors[$comment->getAuthorId()]
                                     ) ? new AuthorDTO(
@@ -53,8 +53,8 @@ class Fetcher
                                                           label: $statusEnum->label(),
                                                       ),
                 parentId:                             $comment->getParentId(),
-                createdAt:                            $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()) : null,
-                updatedAt:                            $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()) : null,
+                createdAt:                            $comment->getCreatedAt() ? new \DateTimeImmutable($comment->getCreatedAt()->toDateTimeString()) : null,
+                updatedAt:                            $comment->getUpdatedAt() ? new \DateTimeImmutable($comment->getUpdatedAt()->toDateTimeString()) : null,
             );
         }, $comments);
 

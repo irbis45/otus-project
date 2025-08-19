@@ -39,6 +39,23 @@ class CategoryRepository implements CategoryRepositoryInterface
                      ->all();
     }
 
+    public function fetchPaginatedWithFilters(int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc', ?string $status = null): array
+    {
+        [$orderBy, $direction] = $this->normalizeOrderBy($orderBy, $direction);
+
+        $query = Category::query();
+
+        if ($status !== null && $status !== '') {
+            $query->where('active', $status === '1');
+        }
+
+        return $query->orderBy($orderBy, $direction)
+                       ->limit($limit)
+                       ->offset($offset)
+                       ->get()
+                       ->all();
+    }
+
     /**
      * @param bool $onlyActive
      *
@@ -50,6 +67,17 @@ class CategoryRepository implements CategoryRepositoryInterface
 
         if ($onlyActive) {
             $query->active();
+        }
+
+        return $query->count();
+    }
+
+    public function countWithFilters(?string $status = null): int
+    {
+        $query = Category::query();
+
+        if ($status !== null && $status !== '') {
+            $query->where('active', $status === '1');
         }
 
         return $query->count();
@@ -92,6 +120,36 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
 
+    public function searchPaginated(string $query, int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc'): array
+    {
+        [$orderBy, $direction] = $this->normalizeOrderBy($orderBy, $direction);
+
+        $categoryQuery = Category::query();
+
+        return $categoryQuery
+            ->where(function ($q) use ($query) {
+                $q->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
+                  ->orWhereRaw('LOWER(description) LIKE ?', ['%' . strtolower($query) . '%']);
+            })
+            ->orderBy($orderBy, $direction)
+            ->limit($limit)
+            ->offset($offset)
+            ->get()
+            ->all();
+    }
+
+    public function countSearch(string $query): int
+    {
+        $categoryQuery = Category::query();
+
+        return $categoryQuery
+            ->where(function ($q) use ($query) {
+                $q->whereRaw('LOWER(name) LIKE ?', ['%' . strtolower($query) . '%'])
+                  ->orWhereRaw('LOWER(description) LIKE ?', ['%' . strtolower($query) . '%']);
+            })
+            ->count();
+    }
+
     /**
      * @param string $slug
      *
@@ -129,5 +187,29 @@ class CategoryRepository implements CategoryRepositoryInterface
                        ->limit($limit)
                        ->get()
                        ->all();
+    }
+
+    /**
+     * Проверяет и нормализует параметры сортировки
+     *
+     * @param string $orderBy Запрошенное поле сортировки
+     * @param string $direction Запрошенное направление сортировки
+     *
+     * @return array [orderBy, direction] — валидные значения
+     */
+    private function normalizeOrderBy(string $orderBy, string $direction): array
+    {
+        $allowedOrderBy = ['id', 'name', 'created_at'];
+        $direction = strtolower($direction);
+
+        if (!in_array($orderBy, $allowedOrderBy, true)) {
+            $orderBy = 'id';
+        }
+
+        if (!in_array($direction, ['asc', 'desc'], true)) {
+            $direction = 'desc';
+        }
+
+        return [$orderBy, $direction];
     }
 }

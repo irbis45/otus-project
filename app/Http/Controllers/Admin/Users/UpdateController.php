@@ -58,15 +58,13 @@ class UpdateController extends Controller
 
             $handler->handle($command);
 
-            // Изменяем роли, если они переданы
+            // Изменяем роли, если они переданы (включая пустой массив для удаления всех ролей)
             $roles = $request->get('roles', []);
-            if (!empty($roles)) {
-                if (is_string($roles)) {
-                    $roles = [$roles];
-                }
-                $changeRoleCommand = new ChangeRoleCommand((int)$userId, $roles);
-                $changeRoleHandler->handle($changeRoleCommand);
+            if (is_string($roles)) {
+                $roles = [$roles];
             }
+            $changeRoleCommand = new ChangeRoleCommand((int)$userId, $roles);
+            $changeRoleHandler->handle($changeRoleCommand);
 
             return redirect()->route('admin.users.index')
                              ->with('success', "Пользователь '{$request->get('name')}' успешно создан");

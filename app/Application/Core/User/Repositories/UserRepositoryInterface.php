@@ -61,4 +61,20 @@ interface UserRepositoryInterface
      * @return array
      */
     public function findByIds(array $ids): array;
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @param string|null $search
+     *
+     * @return array
+     */
+    public function searchPaginated(int $limit, int $offset, ?string $search = null): array;
+
+    /**
+     * @param string|null $search
+     *
+     * @return int
+     */
+    public function searchCount(?string $search = null): int;
 }

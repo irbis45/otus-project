@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Users;
 
-use App\Application\Core\User\UseCases\Queries\FetchAllPagination\Fetcher;
-use App\Application\Core\User\UseCases\Queries\FetchAllPagination\Query;
+use App\Application\Core\User\UseCases\Queries\SearchUsers\Fetcher;
+use App\Application\Core\User\UseCases\Queries\SearchUsers\Query;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -21,8 +21,9 @@ class IndexController extends Controller
 
         $page = max(1, (int) $request->get('page', 1));
         $perPage = 10;
+        $search = $request->get('search');
 
-        $query = Query::fromPage($page, $perPage);
+        $query = Query::fromPage($page, $perPage, $search);
         $paginatedResult = $fetcher->fetch($query);
 
         $users = new LengthAwarePaginator(

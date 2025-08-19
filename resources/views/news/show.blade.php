@@ -31,7 +31,7 @@
         <div class="col-lg-8 col-md-7">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ route('home') }}">Главная</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('news.breadcrumb.home') }}</a></li>
                     @if ($news->category)
                         <li class="breadcrumb-item"><a href="{{ route('news.category', $news->category->slug) }}">{{ $news->category->name }}</a></li>
                     @endif
@@ -68,9 +68,9 @@
                     <hr class="my-4">
 
                     <div class="d-flex flex-wrap justify-content-between">
-                        <a href="{{ route('home') }}" class="btn btn-outline-secondary mb-2 mb-sm-0"><i class="fas fa-arrow-left me-2"></i>Вернуться на главную</a>
+                        <a href="{{ route('home') }}" class="btn btn-outline-secondary mb-2 mb-sm-0"><i class="fas fa-arrow-left me-2"></i>{{ __('home.back_to_home') }}</a>
                         <div class="social-share">
-                            <span class="me-2">Поделиться:</span>
+                            <span class="me-2">{{ __('home.share') }}</span>
                             <a href="#" class="btn btn-sm btn-outline-primary me-1"><i class="fab fa-facebook-f"></i></a>
                             <a href="#" class="btn btn-sm btn-outline-info me-1"><i class="fab fa-twitter"></i></a>
                             <a href="#" class="btn btn-sm btn-outline-success"><i class="fab fa-telegram"></i></a>
@@ -83,7 +83,7 @@
             <div class="card shadow-sm mt-4">
                 <div class="card-header bg-light">
                     <h3 class="card-title h5 mb-0">
-                        <i class="fas fa-comments me-2"></i>Комментарии
+                        <i class="fas fa-comments me-2"></i>{{ __('news.show.comments') }}
                     </h3>
                 </div>
                 <div class="card-body">
@@ -92,7 +92,7 @@
                             @csrf
                             <input type="hidden" name="news_id" value="{{ $news->id }}">
                             <div class="mb-3">
-                                <label for="content" class="form-label">Ваш комментарий</label>
+                                <label for="content" class="form-label">{{ __('news.show.add_comment') }}</label>
                                 <textarea class="form-control @error('text') is-invalid @enderror" id="text" name="text" rows="3" required>{{ old('text') }}</textarea>
                                 @error('text')
                                 <div class="invalid-feedback">{{ $message }}</div>

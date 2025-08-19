@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\News;
 use App\Http\Controllers\Admin\Users;
 use App\Http\Controllers\Admin\Comments;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Api\NewsSearchController;
 
 Route::get('/', DashboardController::class)->name('dashboard');
 
@@ -71,4 +72,11 @@ Route::prefix('comments')
          Route::get('/{commentId}/edit', [Comments\UpdateController::class, 'edit'])->name('edit');
          Route::put('/{commentId}', [Comments\UpdateController::class, 'update'])->name('update');
          Route::delete('/{commentId}', Comments\DestroyController::class)->name('destroy');
+     });
+
+// API роуты для админки
+Route::prefix('api')
+     ->name('api.')
+     ->group(function () {
+         Route::get('/news/search', NewsSearchController::class)->name('news.search');
      });

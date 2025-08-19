@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Категории новостей')
+@section('title', __('categories.title'))
 
 @section('content')
-    <h1 class="mb-4">Категории новостей</h1>
+    <h1 class="mb-4">{{ __('categories.title') }}</h1>
 
     @if($categories->total() > 0)
         <div class="list-group">
@@ -23,6 +23,6 @@
             </nav>
         </div>
     @else
-        <p>Категории не найдены.</p>
+        <p>{{ __('categories.not_found') }}</p>
     @endif
 @endsection

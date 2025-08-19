@@ -25,3 +25,5 @@ yarn-error.log
 /packages
 /.cursor
 .cursorrules
+coverage/
+coverage-report/

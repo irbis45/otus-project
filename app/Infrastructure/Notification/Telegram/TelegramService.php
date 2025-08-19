@@ -13,8 +13,8 @@ class TelegramService implements TelegramServiceInterface
 
     public function __construct()
     {
-        $this->botToken = config('services.telegram.bot_token');
-        $this->chatId = config('services.telegram.chat_id');
+        $this->botToken = config('services.telegram.bot_token') ?? '';
+        $this->chatId = config('services.telegram.chat_id') ?? '';
     }
 
     /**
@@ -25,6 +25,12 @@ class TelegramService implements TelegramServiceInterface
      */
     public function sendMessage(string $message): bool
     {
+        // Проверяем, что токен и chat_id установлены
+        if (empty($this->botToken) || empty($this->chatId)) {
+            \Log::warning('Telegram bot token or chat_id not configured');
+            return false;
+        }
+
         $response = Http::post("https://api.telegram.org/bot{$this->botToken}/sendMessage", [
             'chat_id' => $this->chatId,
             'text' => $message,

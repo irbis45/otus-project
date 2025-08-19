@@ -43,4 +43,24 @@ interface CommentRepositoryInterface
      * @return bool|null
      */
     public function delete(Comment $comment): ?bool;
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @param string|null $search
+     * @param int|null $newsId
+     * @param string|null $status
+     *
+     * @return array
+     */
+    public function searchPaginated(int $limit, int $offset, ?string $search = null, ?int $newsId = null, ?string $status = null): array;
+
+    /**
+     * @param string|null $search
+     * @param int|null $newsId
+     * @param string|null $status
+     *
+     * @return int
+     */
+    public function searchCount(?string $search = null, ?int $newsId = null, ?string $status = null): int;
 }

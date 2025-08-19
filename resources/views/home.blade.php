@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Главная')
+@section('title', __('home.title'))
 
 @php
     /**
@@ -19,7 +19,7 @@
 
         @if(count($featuredNews) > 0)
             <div class="col-12 featured-news">
-                <h2 class="mb-4">Главные новости</h2>
+                <h2 class="mb-4">{{ __('home.featured_news') }}</h2>
                 <div class="row">
                     @foreach($featuredNews as $feature)
                         <div class="col-lg-4 col-md-6 col-12 mb-4">
@@ -42,7 +42,7 @@
                                         </small>
                                     </p>
                                     <p class="card-text">{{ $feature->excerpt ?: Str::limit(strip_tags($feature->content), 150) }}</p>
-                                    <a href="{{ route('news.show', $feature->slug) }}" class="btn btn-primary mt-auto">Читать полностью</a>
+                                    <a href="{{ route('news.show', $feature->slug) }}" class="btn btn-primary mt-auto">{{ __('home.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
         @endif
 
         <div class="col-lg-8 col-md-7">
-            <h2 class="mb-4">Последние новости</h2>
+            <h2 class="mb-4">{{ __('home.latest_news') }}</h2>
             @if($latestNews->total() > 0)
                 @foreach($latestNews as $news)
 
@@ -82,7 +82,7 @@
                                         </small>
                                     </p>
                                     <p class="card-text">{{ $news->excerpt ?: Str::limit(strip_tags($news->content), 150) }}</p>
-                                    <a href="{{ route('news.show', $news->slug) }}" class="btn btn-sm btn-outline-primary">Читать полностью</a>
+                                    <a href="{{ route('news.show', $news->slug) }}" class="btn btn-sm btn-outline-primary">{{ __('home.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                  </div>
             @else
                 <div class="alert alert-info">
-                    Пока нет новостей. Заходите позже!
+                    {{ __('home.no_news') }}
                 </div>
             @endif
         </div>
@@ -104,7 +104,7 @@
         <div class="col-lg-4 col-md-5 mt-4 mt-md-0">
             <div class="card shadow-sm mb-4">
                 <div class="card-header bg-primary text-white">
-                    <h5 class="card-title mb-0">Категории</h5>
+                    <h5 class="card-title mb-0">{{ __('home.categories') }}</h5>
                 </div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush" style="max-height: 300px; overflow-y: auto;">

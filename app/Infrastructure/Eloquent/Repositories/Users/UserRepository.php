@@ -94,4 +94,44 @@ class UserRepository implements UserRepositoryInterface
     {
         return User::query()->whereIn('id', $ids)->get()->keyBy('id')->all();
     }
+
+    /**
+     * @param int $limit
+     * @param int $offset
+     * @param string|null $search
+     *
+     * @return array
+     */
+    public function searchPaginated(int $limit, int $offset, ?string $search = null): array
+    {
+        $query = User::query()->orderBy('id', 'desc');
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        return $query->limit($limit)->offset($offset)->get()->all();
+    }
+
+    /**
+     * @param string|null $search
+     *
+     * @return int
+     */
+    public function searchCount(?string $search = null): int
+    {
+        $query = User::query();
+
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                  ->orWhere('email', 'like', "%{$search}%");
+            });
+        }
+
+        return $query->count();
+    }
 }

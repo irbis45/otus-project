@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Categories;
 
-use App\Application\Core\Category\UseCases\Queries\FetchAllPagination\Fetcher;
-use App\Application\Core\Category\UseCases\Queries\FetchAllPagination\Query;
+use App\Application\Core\Category\UseCases\Queries\SearchCategories\Fetcher;
+use App\Application\Core\Category\UseCases\Queries\SearchCategories\Query;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -19,10 +19,7 @@ class IndexController extends Controller
     {
         Gate::authorize('category.viewAny');
 
-        $page = max(1, (int) $request->get('page', 1));
-        $perPage = 10;
-
-        $query = Query::fromPage($page, $perPage);
+        $query = Query::fromRequest($request->all());
         $paginatedResult = $fetcher->fetch($query);
 
         $categories = new LengthAwarePaginator(

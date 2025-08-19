@@ -23,9 +23,38 @@ interface CategoryRepositoryInterface
     public function fetchPaginated(int $limit, int $offset, bool $onlyActive = false): array;
 
     /**
+     * Получить категории с фильтрами (для админки)
+     *
+     * @param int    $limit
+     * @param int    $offset
+     * @param string $orderBy
+     * @param string $direction
+     * @param string|null $status
+     *
+     * @return array
+     */
+    public function fetchPaginatedWithFilters(int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc', ?string $status = null): array;
+
+    /**
      * @return int
      */
     public function count(): int;
+
+    /**
+     * Подсчитать категории с фильтрами (для админки)
+     *
+     * @param string|null $status
+     *
+     * @return int
+     */
+    public function countWithFilters(?string $status = null): int;
+
+    /**
+     * Поиск категорий
+     */
+    public function searchPaginated(string $query, int $limit, int $offset, string $orderBy = 'id', string $direction = 'desc'): array;
+
+    public function countSearch(string $query): int;
 
     /**
      * @param int $id
