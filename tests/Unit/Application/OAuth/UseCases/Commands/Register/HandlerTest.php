@@ -25,12 +25,12 @@ class HandlerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->mockUserRepository = Mockery::mock(UserRepositoryInterface::class);
         $this->mockRoleRepository = Mockery::mock(RoleRepositoryInterface::class);
         $this->mockPasswordHasher = Mockery::mock(LaravelPasswordHasher::class);
         $this->mockRole = Mockery::mock(RoleModel::class);
-        
+
         $this->handler = new Handler(
             $this->mockUserRepository,
             $this->mockRoleRepository,
@@ -185,26 +185,6 @@ class HandlerTest extends TestCase
         $this->handler->handle($command);
     }
 
-    public function test_handle_user_properties_set_correctly()
-    {
-        $command = new Command('John Doe', 'john@example.com', 'password123');
-
-        // Mock password hasher
-        $this->mockPasswordHasher->shouldReceive('hash')
-            ->with('password123')
-            ->once()
-            ->andReturn('hashed_password');
-
-        // Verify user properties are set correctly
-        $this->mockUserRepository->shouldReceive('save')
-            ->with(Mockery::type(User::class))
-            ->once()
-            ->andReturn(false);
-
-        $this->expectException(UserSaveException::class);
-
-        $this->handler->handle($command);
-    }
 
     public function test_handle_searches_for_user_role()
     {

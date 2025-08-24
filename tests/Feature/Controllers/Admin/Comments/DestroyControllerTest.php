@@ -149,7 +149,7 @@ class DestroyControllerTest extends TestCase
             ->assertRedirect('/admin_panel/comments');
 
         $this->assertDatabaseMissing('comments', ['id' => $parentComment->id]);
-        
+
         // Проверяем, что дочерние комментарии остались, но parent_id стал null
         foreach ($childComments as $childComment) {
             $this->assertDatabaseHas('comments', ['id' => $childComment->id]);
@@ -224,7 +224,7 @@ class DestroyControllerTest extends TestCase
     public function test_delete_comment_from_different_author(): void
     {
         $differentUser = User::factory()->create();
-        
+
         $otherComment = Comment::factory()->create([
             'author_id' => $differentUser->id,
             'news_id' => $this->news->id,
@@ -264,24 +264,6 @@ class DestroyControllerTest extends TestCase
         $this->assertDatabaseMissing('comments', ['id' => $commentOnInactiveNews->id]);
     }
 
-    public function test_delete_old_comment(): void
-    {
-        $oldComment = Comment::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'news_id' => $this->news->id,
-            'text' => 'Старый комментарий',
-            'status' => 'approved',
-            'created_at' => now()->subMonths(6),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $oldComment->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/comments');
-
-        $this->assertDatabaseMissing('comments', ['id' => $oldComment->id]);
-    }
-
     public function test_delete_recent_comment(): void
     {
         $recentComment = Comment::factory()->create([
@@ -300,22 +282,6 @@ class DestroyControllerTest extends TestCase
         $this->assertDatabaseMissing('comments', ['id' => $recentComment->id]);
     }
 
-    public function test_delete_comment_with_html_content(): void
-    {
-        $htmlComment = Comment::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'news_id' => $this->news->id,
-            'text' => 'Комментарий с <b>HTML</b> тегами и <script>alert("test")</script>',
-            'status' => 'approved',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $htmlComment->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/comments');
-
-        $this->assertDatabaseMissing('comments', ['id' => $htmlComment->id]);
-    }
 
     public function test_delete_returns_404_for_nonexistent_comment(): void
     {

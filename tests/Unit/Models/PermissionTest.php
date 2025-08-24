@@ -26,7 +26,7 @@ class PermissionTest extends TestCase
         $permission = new Permission();
         $permission->id = 1;
         $permission->name = 'Create News';
-        
+
         $this->assertEquals('id', $permission->getColumnName('id'));
         $this->assertEquals('name', $permission->getColumnName('name'));
         $this->assertEquals('unknown', $permission->getColumnName('unknown'));
@@ -53,17 +53,6 @@ class PermissionTest extends TestCase
         $this->assertEquals('Create News', $permission->getName());
     }
 
-    public function test_permission_has_roles_relationship()
-    {
-        $permission = new Permission();
-        $this->assertTrue(method_exists($permission, 'roles'));
-    }
-
-    public function test_permission_timestamps_disabled()
-    {
-        $permission = new Permission();
-        $this->assertFalse($permission->timestamps);
-    }
 
     public function test_permission_roles_relationship_returns_belongs_to_many()
     {

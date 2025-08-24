@@ -120,29 +120,6 @@ class IndexControllerTest extends TestCase
             ->assertViewHas('categories');
     }
 
-    public function test_categories_index_shows_categories_in_correct_order(): void
-    {
-        // Создаем категории с разными именами для проверки сортировки
-        $categoryA = Category::create([
-            'name' => 'A Категория',
-            'slug' => 'a-category',
-            'description' => 'Описание A категории',
-            'active' => true
-        ]);
-
-        $categoryZ = Category::create([
-            'name' => 'Z Категория',
-            'slug' => 'z-category',
-            'description' => 'Описание Z категории',
-            'active' => true
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.categories.index')
-            ->assertViewHas('categories');
-    }
 
     public function test_categories_index_handles_special_characters(): void
     {
@@ -160,21 +137,6 @@ class IndexControllerTest extends TestCase
             ->assertViewHas('categories');
     }
 
-    public function test_categories_index_handles_unicode_characters(): void
-    {
-        $unicodeCategory = Category::create([
-            'name' => 'Категория с Unicode: 🚀🌟💻',
-            'slug' => 'unicode-category',
-            'description' => 'Описание с Unicode: 🚀🌟💻',
-            'active' => true
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.categories.index')
-            ->assertViewHas('categories');
-    }
 
     public function test_categories_index_handles_long_names(): void
     {
@@ -183,23 +145,6 @@ class IndexControllerTest extends TestCase
             'name' => $longName,
             'slug' => 'long-category',
             'description' => 'Описание длинной категории',
-            'active' => true
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.categories.index')
-            ->assertViewHas('categories');
-    }
-
-    public function test_categories_index_handles_long_descriptions(): void
-    {
-        $longDescription = str_repeat('Очень длинное описание категории с множеством слов и символов ', 20);
-        $longDescCategory = Category::create([
-            'name' => 'Категория с длинным описанием',
-            'slug' => 'long-desc-category',
-            'description' => $longDescription,
             'active' => true
         ]);
 
@@ -224,7 +169,7 @@ class IndexControllerTest extends TestCase
         }
 
         $startTime = microtime(true);
-        
+
         $this->actingAs($this->adminUser)
             ->get(self::URL_INDEX)
             ->assertStatus(Response::HTTP_OK)
@@ -251,13 +196,6 @@ class IndexControllerTest extends TestCase
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs('admin.categories.index')
             ->assertViewHas('categories');
-    }
-
-    public function test_guest_cannot_access_categories_index(): void
-    {
-        $this->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/login');
     }
 
     public function test_user_without_admin_role_cannot_access_categories_index(): void

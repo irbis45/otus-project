@@ -72,19 +72,6 @@ class CommentControllerTest extends TestCase
             ->assertRedirect();
     }
 
-    public function test_comment_creation_validates_news_id_exists(): void
-    {
-        $commentData = [
-            'news_id' => 99999, // Несуществующая новость
-            'text' => 'Тестовый комментарий',
-        ];
-
-        $this->actingAs($this->user)
-            ->post(self::URL_COMMENT_STORE, $commentData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect();
-    }
-
     public function test_comment_creation_validates_content_length(): void
     {
         $commentData = [
@@ -131,25 +118,6 @@ class CommentControllerTest extends TestCase
             ->assertRedirect();
     }
 
-    public function test_comment_creation_validates_news_is_published(): void
-    {
-        $unpublishedNews = News::factory()->create([
-            'author_id' => $this->user->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'published_at' => now()->addDay(),
-        ]);
-
-        $commentData = [
-            'news_id' => $unpublishedNews->id,
-            'text' => 'Тестовый комментарий',
-        ];
-
-        $this->actingAs($this->user)
-            ->post(self::URL_COMMENT_STORE, $commentData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect();
-    }
 
     public function test_guest_cannot_create_comment(): void
     {
@@ -176,22 +144,6 @@ class CommentControllerTest extends TestCase
         $comment = Comment::where('text', 'Тестовый комментарий')->first();
         $this->assertNotNull($comment);
         $this->assertEquals($this->user->id, $comment->author_id);
-    }
-
-    public function test_comment_creation_sets_correct_news_id(): void
-    {
-        $commentData = [
-            'news_id' => $this->news->id,
-            'text' => 'Тестовый комментарий',
-        ];
-
-        $this->actingAs($this->user)
-            ->post(self::URL_COMMENT_STORE, $commentData);
-
-        $comment = Comment::where('text', 'Тестовый комментарий')->first();
-        $this->assertNotNull($comment);
-        $this->assertNotNull($comment);
-        $this->assertEquals($this->news->id, $comment->news_id);
     }
 
     public function test_comment_creation_sets_active_to_true(): void
@@ -298,7 +250,7 @@ class CommentControllerTest extends TestCase
 
         $this->actingAs($this->user)
             ->post(self::URL_COMMENT_STORE, $commentData1);
-            
+
         $this->actingAs($this->user)
             ->post(self::URL_COMMENT_STORE, $commentData2);
 

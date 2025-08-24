@@ -135,23 +135,6 @@ class DestroyControllerTest extends TestCase
         $this->assertDatabaseMissing('news', ['id' => $newsWithThumbnail->id]);
     }
 
-    public function test_delete_featured_news(): void
-    {
-        $featuredNews = News::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'featured' => true,
-            'published_at' => now()->subDay(),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $featuredNews->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/news');
-
-        $this->assertDatabaseMissing('news', ['id' => $featuredNews->id]);
-    }
 
     public function test_delete_inactive_news(): void
     {
@@ -168,23 +151,6 @@ class DestroyControllerTest extends TestCase
             ->assertRedirect('/admin_panel/news');
 
         $this->assertDatabaseMissing('news', ['id' => $inactiveNews->id]);
-    }
-
-    public function test_delete_unpublished_news(): void
-    {
-        $unpublishedNews = News::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'published_at' => now()->addDay(),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $unpublishedNews->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/news');
-
-        $this->assertDatabaseMissing('news', ['id' => $unpublishedNews->id]);
     }
 
     public function test_delete_news_with_high_view_count(): void

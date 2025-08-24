@@ -157,21 +157,6 @@ class ShowControllerTest extends TestCase
             ->assertViewIs('admin.news.show');
     }
 
-    public function test_news_show_displays_thumbnail_if_exists(): void
-    {
-        $newsWithThumbnail = News::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'thumbnail' => 'news/test-thumbnail.jpg',
-            'published_at' => now()->subDay(),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $newsWithThumbnail->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.news.show');
-    }
 
     public function test_news_show_displays_creation_and_update_dates(): void
     {

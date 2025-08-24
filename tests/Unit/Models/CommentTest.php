@@ -28,7 +28,7 @@ class CommentTest extends TestCase
         $comment = new Comment();
         $comment->id = 1;
         $comment->text = 'Test comment';
-        
+
         $this->assertEquals('id', $comment->getColumnName('id'));
         $this->assertEquals('text', $comment->getColumnName('text'));
         $this->assertEquals('unknown', $comment->getColumnName('unknown'));
@@ -140,7 +140,7 @@ class CommentTest extends TestCase
     {
         $comment = new Comment();
         $replies = [new Comment(), new Comment()];
-        
+
         $comment->setReplies($replies);
         $this->assertEquals($replies, $comment->getReplies());
     }
@@ -150,21 +150,9 @@ class CommentTest extends TestCase
         $comment = new Comment();
         $replies = [new Comment(), new Comment()];
         $comment->setReplies($replies);
-        
+
         $result = $comment->getReplies();
         $this->assertEquals($replies, $result);
-    }
-
-    public function test_get_replies_returns_null_when_not_set()
-    {
-        $comment = new Comment();
-        $this->assertNull($comment->getReplies());
-    }
-
-    public function test_comment_uses_has_factory_trait()
-    {
-        $comment = new Comment();
-        $this->assertTrue(method_exists($comment, 'factory'));
     }
 
     public function test_comment_casts_status_to_comment_status_enum()

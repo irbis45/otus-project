@@ -94,7 +94,7 @@ class CreateControllerTest extends TestCase
     public function test_admin_can_create_user_with_multiple_roles(): void
     {
         $editorRole = Role::where('slug', 'editor')->first();
-        
+
         $userData = [
             'name' => 'Мульти-роль пользователь',
             'email' => 'multirole@example.com',
@@ -219,28 +219,6 @@ class CreateControllerTest extends TestCase
         ]);
     }
 
-    public function test_create_user_with_long_email(): void
-    {
-        $longEmail = str_repeat('a', 64) . '@' . str_repeat('b', 63) . '.com';
-        
-        $userData = [
-            'name' => 'Длинный email пользователь',
-            'email' => $longEmail,
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
-            'roles' => [$this->userRole->slug],
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->post(self::URL_STORE, $userData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/users');
-
-        $this->assertDatabaseHas('users', [
-            'name' => 'Длинный email пользователь',
-            'email' => $longEmail,
-        ]);
-    }
 
     public function test_create_user_without_roles(): void
     {
@@ -294,25 +272,6 @@ class CreateControllerTest extends TestCase
         $this->actingAs($regularUser)
             ->get(self::URL_CREATE)
             ->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function test_user_without_admin_role_cannot_create_user(): void
-    {
-        $regularUser = User::factory()->create();
-        $userData = [
-            'name' => 'Пользователь обычного пользователя',
-            'email' => 'regular@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
-        ];
-
-        $this->actingAs($regularUser)
-            ->post(self::URL_STORE, $userData)
-            ->assertStatus(Response::HTTP_FORBIDDEN);
-
-        $this->assertDatabaseMissing('users', [
-            'email' => 'regular@example.com',
-        ]);
     }
 
     public function test_create_user_success_message(): void

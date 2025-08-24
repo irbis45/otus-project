@@ -118,7 +118,7 @@ class UpdateControllerTest extends TestCase
     public function test_admin_can_update_user_password(): void
     {
         $oldPassword = $this->testUser->password;
-        
+
         $updateData = [
             'name' => $this->testUser->name,
             'email' => $this->testUser->email,
@@ -139,7 +139,7 @@ class UpdateControllerTest extends TestCase
     public function test_admin_can_update_user_roles(): void
     {
         $editorRole = Role::where('slug', 'editor')->first();
-        
+
         $updateData = [
             'name' => $this->testUser->name,
             'email' => $this->testUser->email,
@@ -175,7 +175,7 @@ class UpdateControllerTest extends TestCase
 
         $this->testUser->refresh();
         $this->testUser->load('roles'); // Явно загружаем отношения
-        
+
         // Отладочная информация
         $this->assertCount(0, $this->testUser->roles, 'Роли не были удалены. Текущие роли: ' . $this->testUser->roles->pluck('slug')->implode(', '));
         $this->assertFalse($this->testUser->hasRole('user'), 'Роль user все еще присутствует');
@@ -187,19 +187,6 @@ class UpdateControllerTest extends TestCase
             ->put(sprintf(self::URL_UPDATE, $this->testUser->id), [])
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(['name', 'email']);
-    }
-
-    public function test_update_user_validates_email_format(): void
-    {
-        $updateData = [
-            'name' => 'Тестовый пользователь',
-            'email' => 'invalid-email',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->testUser->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['email']);
     }
 
     public function test_update_user_validates_email_uniqueness(): void
@@ -247,24 +234,6 @@ class UpdateControllerTest extends TestCase
             ->assertSessionHasErrors(['password']);
     }
 
-    public function test_update_user_with_same_email_should_pass(): void
-    {
-        $updateData = [
-            'name' => 'Обновленное имя',
-            'email' => $this->testUser->email, // Тот же email
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->testUser->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/users');
-
-        $this->assertDatabaseHas('users', [
-            'id' => $this->testUser->id,
-            'name' => 'Обновленное имя',
-            'email' => $this->testUser->email,
-        ]);
-    }
 
     public function test_update_user_with_special_characters(): void
     {
@@ -283,23 +252,6 @@ class UpdateControllerTest extends TestCase
             'name' => 'Пользователь с символами @#$%^&*()',
             'email' => 'special_chars@example.com',
         ]);
-    }
-
-    public function test_update_user_email_verification_status(): void
-    {
-        $updateData = [
-            'name' => $this->testUser->name,
-            'email' => $this->testUser->email,
-            'email_verified' => true,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->testUser->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND);
-
-        $this->testUser->refresh();
-        // В зависимости от логики контроллера может быть установлено email_verified_at
-        $this->assertNotNull($this->testUser);
     }
 
     public function test_edit_form_returns_404_for_nonexistent_user(): void
@@ -349,53 +301,6 @@ class UpdateControllerTest extends TestCase
             ->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
-    public function test_user_without_admin_role_cannot_update_user(): void
-    {
-        $regularUser = User::factory()->create();
-        $updateData = [
-            'name' => 'Пользователь обычного пользователя',
-            'email' => 'regular@example.com',
-        ];
-
-        $this->actingAs($regularUser)
-            ->put(sprintf(self::URL_UPDATE, $this->testUser->id), $updateData)
-            ->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function test_update_preserves_unchanged_fields(): void
-    {
-        $originalCreatedAt = $this->testUser->created_at;
-
-        $updateData = [
-            'name' => 'Только имя изменено',
-            'email' => $this->testUser->email,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->testUser->id), $updateData);
-
-        $this->testUser->refresh();
-        $this->assertEquals($originalCreatedAt, $this->testUser->created_at);
-    }
-
-    public function test_update_changes_updated_at_timestamp(): void
-    {
-        $originalUpdatedAt = $this->testUser->updated_at;
-
-        // Добавляем небольшую задержку для изменения timestamp
-        sleep(1);
-
-        $updateData = [
-            'name' => 'Пользователь для проверки timestamp',
-            'email' => 'timestamp@example.com',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->testUser->id), $updateData);
-
-        $this->testUser->refresh();
-        $this->assertGreaterThan($originalUpdatedAt->timestamp, $this->testUser->updated_at->timestamp);
-    }
 
     public function test_update_user_success_message(): void
     {

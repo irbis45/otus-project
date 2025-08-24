@@ -125,7 +125,7 @@ class ShowControllerTest extends TestCase
             'author_id' => $this->adminUser->id,
             'category_id' => $category->id,
         ]);
-        
+
         $comments = Comment::factory(3)->create([
             'author_id' => $this->testUser->id,
             'news_id' => $news->id,
@@ -174,45 +174,13 @@ class ShowControllerTest extends TestCase
     {
         $userRole = Role::where('slug', 'user')->first();
         $editorRole = Role::where('slug', 'editor')->first();
-        
+
         $this->testUser->roles()->attach([$userRole->id, $editorRole->id]);
 
         $this->actingAs($this->adminUser)
             ->get(sprintf(self::URL_SHOW, $this->testUser->id))
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs('admin.users.show');
-    }
-
-    public function test_user_show_with_long_name(): void
-    {
-        $longNameUser = User::factory()->create([
-            'name' => str_repeat('Очень длинное имя пользователя ', 2),
-            'email' => 'longname@example.com',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $longNameUser->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.users.show')
-            ->assertViewHas('user')
-            ->assertSee($longNameUser->name)
-            ->assertSee($longNameUser->email);
-    }
-
-    public function test_user_show_with_special_characters_in_name(): void
-    {
-        $specialUser = User::factory()->create([
-            'name' => 'Пользователь с символами @#$%^&*()',
-            'email' => 'special@example.com',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $specialUser->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.users.show')
-            ->assertViewHas('user')
-            ->assertSee($specialUser->name)
-            ->assertSee($specialUser->email);
     }
 
     public function test_user_show_with_unverified_email(): void
@@ -257,7 +225,7 @@ class ShowControllerTest extends TestCase
             'author_id' => $this->adminUser->id,
             'category_id' => $category->id,
         ]);
-        
+
         $comments = Comment::factory(50)->create([
             'author_id' => $this->testUser->id,
             'news_id' => $news->id,

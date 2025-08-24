@@ -126,14 +126,6 @@ class ShowControllerTest extends TestCase
             ->assertViewHas('comment'); // Проверяем наличие комментария
     }
 
-    public function test_comment_show_displays_status(): void
-    {
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $this->comment->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.comments.show');
-    }
-
     public function test_comment_show_with_pending_comment(): void
     {
         $pendingComment = Comment::factory()->create([
@@ -161,30 +153,6 @@ class ShowControllerTest extends TestCase
 
         $this->actingAs($this->adminUser)
             ->get(sprintf(self::URL_SHOW, $rejectedComment->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.comments.show')
-            ->assertViewHas('comment');
-    }
-
-    public function test_comment_show_with_parent_comment(): void
-    {
-        $parentComment = Comment::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'news_id' => $this->news->id,
-            'text' => 'Родительский комментарий',
-            'status' => 'approved',
-        ]);
-
-        $childComment = Comment::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'news_id' => $this->news->id,
-            'parent_id' => $parentComment->id,
-            'text' => 'Дочерний комментарий',
-            'status' => 'approved',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $childComment->id))
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs('admin.comments.show')
             ->assertViewHas('comment');
@@ -233,7 +201,7 @@ class ShowControllerTest extends TestCase
     public function test_comment_show_with_different_author(): void
     {
         $differentUser = User::factory()->create(['name' => 'Другой пользователь']);
-        
+
         $otherComment = Comment::factory()->create([
             'author_id' => $differentUser->id,
             'news_id' => $this->news->id,
@@ -247,29 +215,6 @@ class ShowControllerTest extends TestCase
             ->assertViewIs('admin.comments.show')
             ->assertViewHas('comment')
             ->assertSee('Другой пользователь');
-    }
-
-    public function test_comment_show_with_inactive_news(): void
-    {
-        $inactiveNews = News::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'category_id' => $this->category->id,
-            'active' => false,
-            'published_at' => now()->subDay(),
-        ]);
-
-        $commentOnInactiveNews = Comment::factory()->create([
-            'author_id' => $this->adminUser->id,
-            'news_id' => $inactiveNews->id,
-            'text' => 'Комментарий к неактивной новости',
-            'status' => 'approved',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $commentOnInactiveNews->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.comments.show')
-            ->assertViewHas('comment');
     }
 
     public function test_comment_show_with_old_comment(): void

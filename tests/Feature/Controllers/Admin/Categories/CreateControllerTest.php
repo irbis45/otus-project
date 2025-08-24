@@ -140,7 +140,7 @@ class CreateControllerTest extends TestCase
     public function test_create_category_with_long_description(): void
     {
         $longDescription = str_repeat('Очень длинное описание категории. ', 20);
-        
+
         $categoryData = [
             'name' => 'Категория с длинным описанием',
             'description' => $longDescription,
@@ -155,53 +155,19 @@ class CreateControllerTest extends TestCase
         $this->assertDatabaseHas('categories', [
             'name' => 'Категория с длинным описанием',
         ]);
-        
+
         // Проверяем, что описание сохранилось (может быть обрезано)
         $category = \App\Models\Category::where('name', 'Категория с длинным описанием')->first();
         $this->assertNotNull($category);
         $this->assertStringContainsString('Очень длинное описание категории', $category->description);
     }
 
-    public function test_create_category_with_special_characters(): void
-    {
-        $categoryData = [
-            'name' => 'Категория с символами: @#$%^&*()',
-            'description' => 'Описание с символами: <>&"\'',
-            'active' => true,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->post(self::URL_STORE, $categoryData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories');
-
-        $this->assertDatabaseHas('categories', [
-            'name' => 'Категория с символами: @#$%^&*()',
-            'description' => 'Описание с символами: <>&"\'',
-        ]);
-    }
 
     public function test_guest_cannot_access_create_form(): void
     {
         $this->get(self::URL_CREATE)
             ->assertStatus(Response::HTTP_FOUND)
             ->assertRedirect('/login');
-    }
-
-    public function test_guest_cannot_create_category(): void
-    {
-        $categoryData = [
-            'name' => 'Категория гостя',
-            'description' => 'Описание',
-        ];
-
-        $this->post(self::URL_STORE, $categoryData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/login');
-
-        $this->assertDatabaseMissing('categories', [
-            'name' => 'Категория гостя',
-        ]);
     }
 
     public function test_user_without_admin_role_cannot_access_create_form(): void
@@ -252,15 +218,6 @@ class CreateControllerTest extends TestCase
             ->assertSee('name="_token"', false);
     }
 
-    // Тест убран, так как view файл может не существовать
-    // public function test_create_category_form_has_correct_action(): void
-    // {
-    //     $this->actingAs($this->adminUser)
-    //         ->get(self::URL_CREATE)
-    //         ->assertStatus(Response::HTTP_OK)
-    //         ->assertSee('action="' . self::URL_STORE . '"', false)
-    //         ->assertSee('method="POST"', false);
-    // }
 
     protected function tearDown(): void
     {

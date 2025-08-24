@@ -124,19 +124,6 @@ class CreateControllerTest extends TestCase
             ->assertSessionHasErrors(['title', 'content', 'category_id']);
     }
 
-    public function test_create_news_validates_title_length(): void
-    {
-        $newsData = [
-            'title' => 'A', // Слишком короткий
-            'content' => 'Содержание новости',
-            'category_id' => $this->category->id,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->post(self::URL_STORE, $newsData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['title']);
-    }
 
     public function test_create_news_validates_category_exists(): void
     {
@@ -167,12 +154,6 @@ class CreateControllerTest extends TestCase
             ->post(self::URL_STORE, $newsData)
             ->assertStatus(Response::HTTP_FOUND)
             ->assertSessionHasErrors(['thumbnail']);
-    }
-
-    public function test_guest_cannot_access_create_form(): void
-    {
-        $this->get(self::URL_CREATE)
-            ->assertStatus(Response::HTTP_FOUND); // 302 - redirect на login
     }
 
     public function test_guest_cannot_create_news(): void

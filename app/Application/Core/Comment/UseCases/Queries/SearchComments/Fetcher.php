@@ -60,7 +60,7 @@ class Fetcher
                     name: $author->getName(),
                     email: $author->getEmail(),
                 ) : null,
-                newsId: $newsItem->getId(),
+                newsId: $newsItem?->getId(),
                 status: new StatusDTO(
                     value: $comment->getStatus()->value,
                     label: $comment->getStatus()->label(),

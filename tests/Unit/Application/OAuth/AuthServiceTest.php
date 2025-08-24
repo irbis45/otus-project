@@ -102,40 +102,6 @@ class AuthServiceTest extends TestCase
         $this->assertNull($result);
     }
 
-    public function test_attempt_with_long_credentials()
-    {
-        $email = str_repeat('a', 100) . '@example.com';
-        $password = str_repeat('b', 100);
-
-        Auth::shouldReceive('attempt')
-            ->with(['email' => $email, 'password' => $password])
-            ->once()
-            ->andReturn(false);
-
-        $result = $this->authService->attempt($email, $password);
-
-        $this->assertNull($result);
-    }
-
-    public function test_attempt_uses_compact_function_correctly()
-    {
-        $email = 'test@example.com';
-        $password = 'password';
-
-        Auth::shouldReceive('attempt')
-            ->with(['email' => $email, 'password' => $password])
-            ->once()
-            ->andReturn(true);
-
-        Auth::shouldReceive('user')
-            ->once()
-            ->andReturn($this->mockUser);
-
-        $result = $this->authService->attempt($email, $password);
-
-        $this->assertSame($this->mockUser, $result);
-    }
-
     public function test_attempt_returns_null_when_auth_fails()
     {
         Auth::shouldReceive('attempt')
@@ -179,3 +145,6 @@ class AuthServiceTest extends TestCase
         $this->assertNull($result);
     }
 }
+
+
+

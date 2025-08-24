@@ -18,8 +18,7 @@ class PublicMenuComposer
     {
         $user = $this->authManager->guard()->user();
         $menu = config('menu.public');
-
-        $menuItems = $user ? $this->menuBuilder->build($menu, $user) : [];
+        $menuItems = $this->menuBuilder->build($menu, $user);
 
         $view->with('publicMenuItems', $menuItems);
     }

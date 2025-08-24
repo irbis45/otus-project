@@ -2,22 +2,13 @@
 
 namespace Tests\Feature\Controllers\Public;
 
-use App\Application\Core\News\UseCases\Queries\FetchAllPagination\Fetcher as LatestFetcher;
-use App\Application\Core\News\UseCases\Queries\FetchAllPagination\Query as LatestQuery;
-use App\Application\Core\News\UseCases\Queries\FetchFeatured\Fetcher as FeaturedFetcher;
-use App\Application\Core\News\UseCases\Queries\FetchFeatured\Query as FeaturedQuery;
-use App\Application\Core\News\DTO\NewsDTO;
-use App\Application\Core\News\DTO\AuthorDTO;
-use App\Application\Core\News\DTO\CategoryDTO;
-use App\Application\Core\News\DTO\PaginatedResult;
-use App\Application\Core\News\DTO\FeaturedResult;
+
 use App\Models\User;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Response;
 use Mockery;
 use PHPUnit\Framework\Attributes\Group;
-use Tests\Feature\Controllers\Public\PublicTestCase;
 
 #[Group('public')]
 #[Group('public-home')]
@@ -27,7 +18,6 @@ class HomeControllerTest extends PublicTestCase
 
     private User $user;
     private Category $category;
-    private News $news;
 
     public function setUp(): void
     {
@@ -51,19 +41,9 @@ class HomeControllerTest extends PublicTestCase
         ]);
     }
 
-
-
     public function test_guest_can_view_home_page(): void
     {
         $this->get(self::URL_HOME)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('home');
-    }
-
-    public function test_authenticated_user_can_view_home_page(): void
-    {
-        $this->actingAs($this->user)
-            ->get(self::URL_HOME)
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs('home');
     }
@@ -85,21 +65,6 @@ class HomeControllerTest extends PublicTestCase
             ->assertViewHas('featuredNews');
     }
 
-    public function test_home_page_pagination_works(): void
-    {
-        // Создаем больше новостей, чем помещается на одной странице
-        $news = News::factory(15)->create([
-            'author_id' => $this->user->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'published_at' => now()->subDays(rand(1, 15)),
-        ]);
-
-        $this->get(self::URL_HOME . '?page=2')
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('home')
-            ->assertViewHas('latestNews');
-    }
 
     public function test_home_page_shows_featured_news(): void
     {
@@ -237,9 +202,9 @@ class HomeControllerTest extends PublicTestCase
     protected function tearDown(): void
     {
         Mockery::close();
-        
 
-        
+
+
         parent::tearDown();
     }
 

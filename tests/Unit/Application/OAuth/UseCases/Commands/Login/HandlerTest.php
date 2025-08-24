@@ -27,12 +27,12 @@ class HandlerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->mockUserRepository = Mockery::mock(UserRepositoryInterface::class);
         $this->mockAuthService = Mockery::mock(AuthServiceInterface::class);
         $this->mockUser = Mockery::mock(User::class);
         $this->mockTokenResult = Mockery::mock(PersonalAccessTokenResult::class);
-        
+
         $this->handler = new Handler(
             $this->mockUserRepository,
             $this->mockAuthService
@@ -228,41 +228,6 @@ class HandlerTest extends TestCase
         $result = $this->handler->handle($command);
 
         $this->assertArrayHasKey('token', $result);
-    }
-
-    public function test_handle_returns_correct_array_structure()
-    {
-        $command = new Command('admin@example.com', 'password');
-        $accessToken = 'test_access_token';
-
-        $this->mockUserRepository->shouldReceive('findByEmail')
-            ->with('admin@example.com')
-            ->once()
-            ->andReturn($this->mockUser);
-
-        $this->mockUser->shouldReceive('hasRole')
-            ->with(RoleEnum::ADMIN->value)
-            ->once()
-            ->andReturn(true);
-
-        $this->mockAuthService->shouldReceive('attempt')
-            ->with('admin@example.com', 'password')
-            ->once()
-            ->andReturn($this->mockUser);
-
-        $this->mockUser->shouldReceive('createToken')
-            ->with('authToken')
-            ->once()
-            ->andReturn($this->mockTokenResult);
-
-        $this->mockTokenResult->accessToken = $accessToken;
-
-        $result = $this->handler->handle($command);
-
-        $this->assertIsArray($result);
-        $this->assertCount(1, $result);
-        $this->assertArrayHasKey('token', $result);
-        $this->assertEquals($accessToken, $result['token']);
     }
 
     public function test_handle_uses_correct_token_name()

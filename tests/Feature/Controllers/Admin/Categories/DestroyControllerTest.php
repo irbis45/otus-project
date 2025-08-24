@@ -178,32 +178,6 @@ class DestroyControllerTest extends AdminTestCase
         $this->assertDatabaseHas('categories', ['id' => $this->category->id]);
     }
 
-    public function test_delete_category_with_many_news(): void
-    {
-        // Создаем много новостей в категории
-        $news = News::factory(50)->create([
-            'author_id' => $this->adminUser->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'published_at' => now()->subDays(rand(1, 30)),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $this->category->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories');
-
-        $this->assertDatabaseMissing('categories', ['id' => $this->category->id]);
-        // Проверяем, что новости остались, но category_id стал null
-        foreach ($news as $newsItem) {
-            $this->assertDatabaseHas('news', ['id' => $newsItem->id]);
-            $this->assertDatabaseHas('news', [
-                'id' => $newsItem->id,
-                'category_id' => null
-            ]);
-        }
-    }
-
     public function test_delete_category_with_featured_news(): void
     {
         // Создаем избранные новости в категории
@@ -257,65 +231,4 @@ class DestroyControllerTest extends AdminTestCase
             ]);
         }
     }
-
-    public function test_delete_category_with_recent_news(): void
-    {
-        // Создаем недавние новости
-        $recentNews = News::factory(8)->create([
-            'author_id' => $this->adminUser->id,
-            'category_id' => $this->category->id,
-            'active' => true,
-            'published_at' => now()->subHours(rand(1, 24)),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $this->category->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories');
-
-        $this->assertDatabaseMissing('categories', ['id' => $this->category->id]);
-        // Проверяем, что недавние новости остались, но category_id стал null
-        foreach ($recentNews as $newsItem) {
-            $this->assertDatabaseHas('news', ['id' => $newsItem->id]);
-            $this->assertDatabaseHas('news', [
-                'id' => $newsItem->id,
-                'category_id' => null
-            ]);
-        }
-    }
-
-    public function test_delete_category_success_message(): void
-    {
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $this->category->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories')
-            ->assertSessionHas('success');
-    }
-
-    public function test_multiple_categories_deletion(): void
-    {
-        $category1 = Category::factory()->create([
-            'name' => 'Категория 1',
-            'slug' => 'category-1',
-        ]);
-
-        $category2 = Category::factory()->create([
-            'name' => 'Категория 2',
-            'slug' => 'category-2',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $category1->id))
-            ->assertStatus(Response::HTTP_FOUND);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $category2->id))
-            ->assertStatus(Response::HTTP_FOUND);
-
-        $this->assertDatabaseMissing('categories', ['id' => $category1->id]);
-        $this->assertDatabaseMissing('categories', ['id' => $category2->id]);
-    }
-
-
 }

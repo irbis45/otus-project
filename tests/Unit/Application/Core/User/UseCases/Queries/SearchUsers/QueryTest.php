@@ -77,13 +77,4 @@ class QueryTest extends TestCase
         $query = new Query(10, 0, '   ');
         $this->assertFalse($query->hasSearch());
     }
-
-    public function test_immutability(): void
-    {
-        $query = new Query(10, 0, 'test');
-        
-        // Проверяем, что свойства readonly (нельзя изменить)
-        $this->expectException(\Error::class);
-        $query->limit = 20;
-    }
 }

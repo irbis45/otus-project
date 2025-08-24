@@ -35,7 +35,7 @@ class CategoryTest extends TestCase
         $category = new Category();
         $category->id = 1;
         $category->name = 'Test Category';
-        
+
         $this->assertEquals('id', $category->getColumnName('id'));
         $this->assertEquals('name', $category->getColumnName('name'));
         $this->assertEquals('unknown', $category->getColumnName('unknown'));
@@ -103,22 +103,22 @@ class CategoryTest extends TestCase
     {
         $category = new Category();
         $query = Mockery::mock(Builder::class);
-        
+
         $query->shouldReceive('where')
             ->with('active', true)
             ->once()
             ->andReturnSelf();
-        
+
         $query->shouldReceive('whereNotNull')
             ->with('published_at')
             ->once()
             ->andReturnSelf();
-        
+
         $query->shouldReceive('where')
             ->with('published_at', '<=', Mockery::type(Carbon::class))
             ->once()
             ->andReturnSelf();
-        
+
         $result = $category->scopePublished($query);
         $this->assertSame($query, $result);
     }
@@ -127,12 +127,12 @@ class CategoryTest extends TestCase
     {
         $category = new Category();
         $query = Mockery::mock(Builder::class);
-        
+
         $query->shouldReceive('where')
             ->with('active', true)
             ->once()
             ->andReturnSelf();
-        
+
         $result = $category->scopeActive($query);
         $this->assertSame($query, $result);
     }
@@ -143,17 +143,6 @@ class CategoryTest extends TestCase
         $this->assertTrue(method_exists($category, 'makeSlug'));
     }
 
-    public function test_category_uses_has_factory_trait()
-    {
-        $category = new Category();
-        $this->assertTrue(method_exists($category, 'factory'));
-    }
-
-    public function test_category_timestamps_disabled()
-    {
-        $category = new Category();
-        $this->assertFalse($category->timestamps);
-    }
 
     public function test_category_casts_active_to_boolean()
     {

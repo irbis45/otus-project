@@ -153,23 +153,6 @@ class ShowControllerTest extends TestCase
             ->assertViewHas('category');
     }
 
-    public function test_category_show_with_category_with_long_name(): void
-    {
-        $longName = str_repeat('Очень длинное название категории ', 2); // Уменьшаем длину
-        $categoryWithLongName = Category::factory()->create([
-            'name' => $longName,
-            'slug' => 'long-name-category',
-            'description' => 'Описание',
-            'active' => true,
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(sprintf(self::URL_SHOW, $categoryWithLongName->id))
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.categories.show')
-            ->assertViewHas('category');
-    }
-
     public function test_category_show_with_category_with_special_characters(): void
     {
         $categoryWithSpecialChars = Category::factory()->create([

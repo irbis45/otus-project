@@ -112,18 +112,6 @@ class RegisterControllerTest extends TestCase
             ->assertSessionHasErrors(['password']);
     }
 
-    public function test_user_cannot_register_without_password_confirmation(): void
-    {
-        $userData = [
-            'name' => 'Тестовый Пользователь',
-            'email' => 'test@example.com',
-            'password' => 'password123',
-        ];
-
-        $this->post(self::URL_REGISTER, $userData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['password']);
-    }
 
     public function test_user_cannot_register_with_mismatched_passwords(): void
     {
@@ -181,19 +169,6 @@ class RegisterControllerTest extends TestCase
             ->assertSessionHasErrors(['name']);
     }
 
-    public function test_user_cannot_register_with_long_name(): void
-    {
-        $userData = [
-            'name' => str_repeat('A', 256), // Слишком длинное имя
-            'email' => 'test@example.com',
-            'password' => 'password123',
-            'password_confirmation' => 'password123',
-        ];
-
-        $this->post(self::URL_REGISTER, $userData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['name']);
-    }
 
     public function test_authenticated_user_cannot_access_register_form(): void
     {

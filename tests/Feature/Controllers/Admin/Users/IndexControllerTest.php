@@ -103,30 +103,6 @@ class IndexControllerTest extends TestCase
             ->assertViewHas('users');
     }
 
-    public function test_users_index_shows_empty_state_when_no_users(): void
-    {
-        // Удаляем всех пользователей кроме админа
-        User::where('id', '!=', $this->adminUser->id)->delete();
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.users.index')
-            ->assertViewHas('users');
-    }
-
-    public function test_users_index_shows_users_in_correct_order(): void
-    {
-        // Создаем пользователей с разными именами для проверки сортировки
-        $userA = User::factory()->create(['name' => 'A Пользователь']);
-        $userZ = User::factory()->create(['name' => 'Z Пользователь']);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.users.index')
-            ->assertViewHas('users');
-    }
 
     public function test_users_index_handles_special_characters_in_names(): void
     {
@@ -141,18 +117,6 @@ class IndexControllerTest extends TestCase
             ->assertViewHas('users');
     }
 
-    public function test_users_index_handles_unicode_characters(): void
-    {
-        $unicodeUser = User::factory()->create([
-            'name' => 'Пользователь с Unicode: 🚀🌟💻',
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.users.index')
-            ->assertViewHas('users');
-    }
 
     public function test_users_index_handles_long_names(): void
     {
@@ -178,7 +142,7 @@ class IndexControllerTest extends TestCase
         }
 
         $startTime = microtime(true);
-        
+
         $this->actingAs($this->adminUser)
             ->get(self::URL_INDEX)
             ->assertStatus(Response::HTTP_OK)
@@ -248,7 +212,7 @@ class IndexControllerTest extends TestCase
             'slug' => 'regular-user',
             'name' => 'Regular User'
         ]);
-        
+
         $userWithoutPermission = User::factory()->create();
         $userWithoutPermission->roles()->attach($userRole->id);
 

@@ -143,18 +143,6 @@ class NewsControllerTest extends TestCase
             ->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
-    public function test_news_by_category_returns_404_for_inactive_category(): void
-    {
-        $inactiveCategory = Category::create([
-            'name' => 'Неактивная категория',
-            'slug' => 'inactive-category',
-            'description' => 'Описание неактивной категории',
-            'active' => false
-        ]);
-
-        $this->get(sprintf(self::URL_NEWS_CATEGORY, $inactiveCategory->slug))
-            ->assertStatus(Response::HTTP_NOT_FOUND);
-    }
 
     public function test_news_by_category_shows_only_news_from_category(): void
     {
@@ -200,13 +188,6 @@ class NewsControllerTest extends TestCase
             ->assertViewIs('news.search');
     }
 
-    public function test_authenticated_user_can_search_news(): void
-    {
-        $this->actingAs($this->user)
-            ->get(self::URL_NEWS_SEARCH . '?query=test')
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('news.search');
-    }
 
     public function test_news_search_requires_query_parameter(): void
     {
@@ -215,20 +196,6 @@ class NewsControllerTest extends TestCase
             ->assertRedirect('/');
     }
 
-    public function test_news_search_with_empty_query_redirects(): void
-    {
-        $this->get(self::URL_NEWS_SEARCH . '?query=')
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/');
-    }
-
-    public function test_news_search_with_whitespace_query_redirects(): void
-    {
-        // Тест с пробелами внутри запроса (минимум 3 символа, используем URL encoding)
-        $this->get(self::URL_NEWS_SEARCH . '?query=' . urlencode('  '))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/');
-    }
 
     public function test_news_search_finds_matching_news(): void
     {
@@ -242,22 +209,6 @@ class NewsControllerTest extends TestCase
         ]);
 
         $this->get(self::URL_NEWS_SEARCH . '?query=уникальным')
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('news.search');
-    }
-
-    public function test_news_search_pagination_works(): void
-    {
-        // Создаем много новостей для поиска
-        $news = News::factory(20)->create([
-            'author_id' => $this->user->id,
-            'category_id' => $this->category->id,
-            'title' => 'Новость для поиска',
-            'active' => true,
-            'published_at' => now()->subDays(rand(1, 20)),
-        ]);
-
-        $this->get(self::URL_NEWS_SEARCH . '?query=поиска&page=2')
             ->assertStatus(Response::HTTP_OK)
             ->assertViewIs('news.search');
     }

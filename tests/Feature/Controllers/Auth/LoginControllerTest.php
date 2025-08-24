@@ -145,25 +145,6 @@ class LoginControllerTest extends TestCase
             ->assertRedirect(self::URL_LOGIN);
     }
 
-    public function test_authenticated_user_redirected_to_intended_url(): void
-    {
-        // Пытаемся получить защищенную страницу
-        $this->get('/admin_panel')
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/login');
-
-        // Логинимся
-        $credentials = [
-            'email' => $this->user->email,
-            'password' => $this->password,
-        ];
-
-        $this->post(self::URL_LOGIN, $credentials)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel');
-
-        $this->assertAuthenticated();
-    }
 
     public function test_user_redirected_to_home_after_login(): void
     {

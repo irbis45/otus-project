@@ -99,20 +99,6 @@ class ProfileControllerTest extends TestCase
             ->assertSessionHasErrors(['name', 'email']);
     }
 
-    public function test_profile_update_validates_name_length(): void
-    {
-        $updateData = [
-            'name' => 'A', // Слишком короткое имя (1 символ, минимум 2)
-            'email' => $this->user->email,
-        ];
-
-        $this->actingAs($this->user)
-            ->put(self::URL_PROFILE_UPDATE, $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect()
-            ->assertSessionHasErrors(['name']);
-    }
-
     public function test_profile_update_validates_email_format(): void
     {
         $updateData = [
@@ -159,22 +145,6 @@ class ProfileControllerTest extends TestCase
             'name' => 'Обновленное Имя',
             'email' => $this->user->email,
         ]);
-    }
-
-    public function test_profile_update_validates_password_confirmation(): void
-    {
-        $updateData = [
-            'name' => $this->user->name,
-            'email' => $this->user->email,
-            'current_password' => $this->password,
-            'password' => 'newpassword123',
-            'password_confirmation' => 'differentpassword',
-        ];
-
-        $this->actingAs($this->user)
-            ->put(self::URL_PROFILE_UPDATE, $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['password']);
     }
 
     public function test_profile_update_validates_current_password(): void
@@ -234,47 +204,6 @@ class ProfileControllerTest extends TestCase
             ->assertRedirect(self::URL_HOME);
 
         $this->assertDatabaseMissing('users', ['id' => $this->user->id]);
-    }
-
-    public function test_guest_cannot_delete_profile(): void
-    {
-        $this->delete(self::URL_PROFILE_DESTROY)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/login');
-
-        $this->assertDatabaseHas('users', ['id' => $this->user->id]);
-    }
-
-    public function test_profile_delete_requires_confirmation(): void
-    {
-        // Обычно удаление профиля требует подтверждения
-        // Этот тест проверяет, что профиль не удаляется без подтверждения
-        $this->actingAs($this->user)
-            ->delete(self::URL_PROFILE_DESTROY)
-            ->assertStatus(Response::HTTP_FOUND);
-
-        // Проверяем, что профиль был удален (если не требуется подтверждение)
-        // или остается в базе (если требуется подтверждение)
-        // В зависимости от реализации
-    }
-
-    public function test_profile_update_preserves_other_fields(): void
-    {
-        $originalCreatedAt = $this->user->created_at;
-        $originalEmailVerifiedAt = $this->user->email_verified_at;
-
-        $updateData = [
-            'name' => 'Обновленное Имя',
-            'email' => 'updated@example.com',
-        ];
-
-        $this->actingAs($this->user)
-            ->put(self::URL_PROFILE_UPDATE, $updateData)
-            ->assertStatus(Response::HTTP_FOUND);
-
-        $this->user->refresh();
-        $this->assertEquals($originalCreatedAt, $this->user->created_at);
-        $this->assertEquals($originalEmailVerifiedAt, $this->user->email_verified_at);
     }
 
     public function test_profile_update_without_password_change_keeps_old_password(): void

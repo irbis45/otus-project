@@ -164,9 +164,11 @@
                                 <tr>
                                     <td>{{ $comment->id }}</td>
                                     <td>
+                                        @if($comment?->newsId)
                                         <a href="{{ route('admin.news.edit', $comment->newsId) }}" class="text-decoration-none">
                                             {{ $comment->newsId }}
                                         </a>
+                                        @endif
                                         <div class="d-md-none mt-1">
                                             <small class="text-muted">{{ $comment->author?->name  ?? '#deleted'}}</small>
                                         </div>

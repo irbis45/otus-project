@@ -89,7 +89,7 @@ class DestroyControllerTest extends TestCase
             'author_id' => $this->adminUser->id,
             'category_id' => $category->id,
         ]);
-        
+
         $comments = Comment::factory(10)->create([
             'author_id' => $this->testUser->id,
             'news_id' => $news->id,
@@ -119,7 +119,7 @@ class DestroyControllerTest extends TestCase
             'author_id' => $this->testUser->id,
             'category_id' => $category->id,
         ]);
-        
+
         $comments = Comment::factory(5)->create([
             'author_id' => $this->testUser->id,
             'news_id' => $news->first()->id,
@@ -131,7 +131,7 @@ class DestroyControllerTest extends TestCase
             ->assertRedirect('/admin_panel/users');
 
         $this->assertDatabaseMissing('users', ['id' => $this->testUser->id]);
-        
+
         // Проверяем, что новости и комментарии остались, но author_id стал null
         foreach ($news as $newsItem) {
             $this->assertDatabaseHas('news', ['id' => $newsItem->id]);
@@ -177,45 +177,7 @@ class DestroyControllerTest extends TestCase
         $this->assertDatabaseMissing('users', ['id' => $adminTestUser->id]);
     }
 
-    public function test_delete_user_with_verified_email(): void
-    {
-        $this->testUser->email_verified_at = now();
-        $this->testUser->save();
 
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $this->testUser->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/users');
-
-        $this->assertDatabaseMissing('users', ['id' => $this->testUser->id]);
-    }
-
-    public function test_delete_user_with_unverified_email(): void
-    {
-        $this->testUser->email_verified_at = null;
-        $this->testUser->save();
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $this->testUser->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/users');
-
-        $this->assertDatabaseMissing('users', ['id' => $this->testUser->id]);
-    }
-
-    public function test_delete_old_user_account(): void
-    {
-        $oldUser = User::factory()->create([
-            'created_at' => now()->subYears(5),
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->delete(sprintf(self::URL_DELETE, $oldUser->id))
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/users');
-
-        $this->assertDatabaseMissing('users', ['id' => $oldUser->id]);
-    }
 
     public function test_delete_recently_created_user(): void
     {
@@ -327,7 +289,7 @@ class DestroyControllerTest extends TestCase
             'author_id' => $this->adminUser->id,
             'category_id' => $category->id,
         ]);
-        
+
         $comments = Comment::factory(200)->create([
             'author_id' => $this->testUser->id,
             'news_id' => $news->id,

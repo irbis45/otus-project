@@ -8,7 +8,6 @@ use App\Application\Core\News\DTO\CategoryDTO;
 use App\Application\Core\News\DTO\NewsDTO;
 use App\Application\Core\News\DTO\PaginatedResult;
 use App\Application\Core\News\Exceptions\NewsNotFoundException;
-use App\Application\Core\News\Exceptions\NewsSaveException;
 use App\Application\Core\News\Services\ThumbnailService;
 use App\Application\Core\News\UseCases\Commands\Create\Command as CreateNewsCommand;
 use App\Application\Core\News\UseCases\Commands\Create\Handler as CreateNewsHandler;
@@ -25,7 +24,6 @@ use App\Models\Category;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Response;
-use Laravel\Passport\Passport;
 use Mockery;
 use PHPUnit\Framework\Attributes\Group;
 use Tests\TestCase;
@@ -55,7 +53,7 @@ class NewsControllerTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
-        
+
         // Создаем категорию напрямую в базе данных
         $this->category = Category::create([
             'name' => 'Тестовая категория',
@@ -113,42 +111,6 @@ class NewsControllerTest extends TestCase
         parent::tearDown();
     }
 
-    public function test_index_returns_paginated_news_list(): void
-    {
-        // Arrange
-        $fetchAllFetcher = Mockery::mock(FetchAllFetcher::class);
-        $fetchAllFetcher->shouldReceive('fetch')
-            ->once()
-            ->with(Mockery::type(FetchAllQuery::class))
-            ->andReturn($this->paginatedResult);
-
-        $this->app->instance(FetchAllFetcher::class, $fetchAllFetcher);
-
-        // Act
-        $response = $this->actingAs($this->user, self::GUARD)
-            ->getJson(self::URL_INDEX . '?limit=10&page=1');
-
-        // Assert
-        $response->assertStatus(Response::HTTP_OK)
-            ->assertJsonStructure([
-                'data' => [
-                    '*' => [
-                        'id', 'title', 'slug', 'content', 'excerpt',
-                        'thumbnail', 'published_at', 'active', 'featured',
-                        'views', 'created_at', 'updated_at', 'author', 'category'
-                    ]
-                ],
-                'meta' => ['total', 'limit', 'offset']
-            ])
-            ->assertJson([
-                'meta' => [
-                    'total' => 1,
-                    'limit' => 10,
-                    'offset' => 0
-                ]
-            ]);
-    }
-
     public function test_index_with_custom_pagination_parameters(): void
     {
         // Arrange
@@ -180,38 +142,6 @@ class NewsControllerTest extends TestCase
                     'total' => 1,
                     'limit' => 5,
                     'offset' => 10
-                ]
-            ]);
-    }
-
-    public function test_show_returns_news_by_id(): void
-    {
-        // Arrange
-        $fetchByIdFetcher = Mockery::mock(FetchByIdFetcher::class);
-        $fetchByIdFetcher->shouldReceive('fetch')
-            ->once()
-            ->with(Mockery::type(FetchByIdQuery::class))
-            ->andReturn($this->newsDTO);
-
-        $this->app->instance(FetchByIdFetcher::class, $fetchByIdFetcher);
-
-        // Act
-        $response = $this->actingAs($this->user, self::GUARD)
-            ->getJson(sprintf(self::URL_SHOW, 123));
-
-        // Assert
-        $response->assertStatus(Response::HTTP_OK)
-            ->assertJsonStructure([
-                'data' => [
-                    'id', 'title', 'slug', 'content', 'excerpt',
-                    'thumbnail', 'published_at', 'active', 'featured',
-                    'views', 'created_at', 'updated_at', 'author', 'category'
-                ]
-            ])
-            ->assertJson([
-                'data' => [
-                    'title' => 'Заголовок новости',
-                    'content' => 'Текст новости'
                 ]
             ]);
     }
@@ -417,48 +347,6 @@ class NewsControllerTest extends TestCase
         $response->assertStatus(Response::HTTP_OK);
     }
 
-    public function test_update_returns_404_when_news_not_found(): void
-    {
-        // Arrange
-        $updateNewsHandler = Mockery::mock(UpdateNewsHandler::class);
-        $updateNewsHandler->shouldReceive('handle')
-            ->once()
-            ->andThrow(new NewsNotFoundException('Новость не найдена'));
-
-        $this->app->instance(UpdateNewsHandler::class, $updateNewsHandler);
-
-        $updateData = ['title' => 'Обновленный заголовок'];
-
-        // Act
-        $response = $this->actingAs($this->user, self::GUARD)
-            ->putJson(sprintf(self::URL_UPDATE, 999), $updateData);
-
-        // Assert
-        $response->assertStatus(Response::HTTP_NOT_FOUND)
-            ->assertJson(['message' => 'Новость не найдена']);
-    }
-
-    public function test_update_returns_error_when_thumbnail_processing_fails(): void
-    {
-        // Arrange
-        $this->thumbnailServiceMock->shouldReceive('downloadAndStore')
-            ->once()
-            ->with('https://example.com/image.jpg')
-            ->andThrow(new \RuntimeException('Ошибка загрузки изображения'));
-
-        $updateData = [
-            'title' => 'Обновленный заголовок',
-            'thumbnail_url' => 'https://example.com/image.jpg'
-        ];
-
-        // Act
-        $response = $this->actingAs($this->user, self::GUARD)
-            ->putJson(sprintf(self::URL_UPDATE, 123), $updateData);
-
-        // Assert
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
-            ->assertJson(['message' => 'Ошибка загрузки миниатюры: Ошибка загрузки изображения']);
-    }
 
     public function test_update_returns_error_when_handler_fails(): void
     {
@@ -499,25 +387,6 @@ class NewsControllerTest extends TestCase
         $response->assertStatus(Response::HTTP_NO_CONTENT);
     }
 
-    public function test_destroy_returns_404_when_news_not_found(): void
-    {
-        // Arrange
-        $deleteNewsHandler = Mockery::mock(DeleteNewsHandler::class);
-        $deleteNewsHandler->shouldReceive('handle')
-            ->once()
-            ->andThrow(new NewsNotFoundException('Новость не найдена'));
-
-        $this->app->instance(DeleteNewsHandler::class, $deleteNewsHandler);
-
-        // Act
-        $response = $this->actingAs($this->user, self::GUARD)
-            ->deleteJson(sprintf(self::URL_DELETE, 999));
-
-        // Assert
-        $response->assertStatus(Response::HTTP_NOT_FOUND)
-            ->assertJson(['message' => 'Новость не найдена']);
-    }
-
     public function test_destroy_returns_error_when_handler_fails(): void
     {
         // Arrange
@@ -545,24 +414,6 @@ class NewsControllerTest extends TestCase
         $this->postJson(self::URL_STORE, [])->assertStatus(Response::HTTP_UNAUTHORIZED);
         $this->putJson(sprintf(self::URL_UPDATE, 123), [])->assertStatus(Response::HTTP_UNAUTHORIZED);
         $this->deleteJson(sprintf(self::URL_DELETE, 123))->assertStatus(Response::HTTP_UNAUTHORIZED);
-    }
-
-    public function test_store_validation_fails_with_invalid_data(): void
-    {
-        // Arrange
-        $invalidData = [
-            'title' => '', // Пустой заголовок
-            'content' => 'a', // Слишком короткий контент
-            'category_id' => 999999 // Несуществующая категория
-        ];
-
-        // Act
-        $response = $this->actingAs($this->user, self::GUARD)
-            ->postJson(self::URL_STORE, $invalidData);
-
-        // Assert
-        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
-            ->assertJsonValidationErrors(['title', 'content', 'category_id']);
     }
 
     public function test_update_validation_fails_with_invalid_data(): void

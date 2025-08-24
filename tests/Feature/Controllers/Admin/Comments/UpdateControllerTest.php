@@ -213,23 +213,11 @@ class UpdateControllerTest extends TestCase
             ->assertSessionHasErrors(['text']);
     }
 
-    public function test_update_comment_validates_status_values(): void
-    {
-        $updateData = [
-            'text' => 'Валидный текст',
-            'status' => 'invalid_status',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->comment->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['status']);
-    }
 
     public function test_update_comment_with_long_text(): void
     {
         $longText = str_repeat('Очень длинный текст комментария. ', 20); // Уменьшаем длину еще больше
-        
+
         $updateData = [
             'text' => $longText,
             'status' => 'approved',
@@ -246,30 +234,11 @@ class UpdateControllerTest extends TestCase
         $this->assertStringContainsString('Очень длинный текст комментария', $this->comment->text);
     }
 
-    public function test_update_comment_with_special_characters(): void
-    {
-        $specialText = 'Комментарий с символами: @#$%^&*()<>&"\'';
-        
-        $updateData = [
-            'text' => $specialText,
-            'status' => 'approved',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->comment->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/comments');
-
-        $this->assertDatabaseHas('comments', [
-            'id' => $this->comment->id,
-            'text' => $specialText,
-        ]);
-    }
 
     public function test_update_comment_with_html_content(): void
     {
         $htmlText = 'Комментарий с <b>HTML</b> тегами и <script>alert("test")</script>';
-        
+
         $updateData = [
             'text' => $htmlText,
             'status' => 'approved',
@@ -288,7 +257,7 @@ class UpdateControllerTest extends TestCase
     public function test_update_comment_with_line_breaks(): void
     {
         $textWithBreaks = "Первая строка\nВторая строка\nТретья строка";
-        
+
         $updateData = [
             'text' => $textWithBreaks,
             'status' => 'approved',

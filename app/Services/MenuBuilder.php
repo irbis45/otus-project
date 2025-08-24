@@ -8,14 +8,18 @@ use App\Models\User;
 
 class MenuBuilder
 {
-    public function build(array $menu, User $user): array
+    public function build(array $menu, ?User $user): array
     {
         return array_filter($menu, function ($item) use ($user) {
             if (!isset($item['permission'])) {
                 return true; // без проверки права
             }
 
-            return $user->hasPermission($item['permission']);
+            if ($user) {
+                return $user->hasPermission($item['permission']);
+            } else {
+                return false;
+            }
         });
     }
 }

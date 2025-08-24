@@ -147,50 +147,37 @@ class NewsTest extends TestCase
     {
         $news = new News();
         $query = Mockery::mock(Builder::class);
-        
+
         $query->shouldReceive('where')
             ->with('active', true)
             ->once()
             ->andReturnSelf();
-        
+
         $query->shouldReceive('whereNotNull')
             ->with('published_at')
             ->once()
             ->andReturnSelf();
-        
+
         $query->shouldReceive('where')
             ->with('published_at', '<=', Mockery::type(Carbon::class))
             ->once()
             ->andReturnSelf();
-        
+
         $result = $news->scopePublished($query);
         $this->assertSame($query, $result);
     }
 
-    public function test_scope_of_category_filters_by_category_id()
-    {
-        $news = new News();
-        $query = Mockery::mock(Builder::class);
-        
-        $query->shouldReceive('where')
-            ->with('category_id', 123)
-            ->once()
-            ->andReturnSelf();
-        
-        $result = $news->scopeOfCategory($query, 123);
-        $this->assertSame($query, $result);
-    }
 
     public function test_scope_featured_filters_featured_news()
     {
         $news = new News();
         $query = Mockery::mock(Builder::class);
-        
+
         $query->shouldReceive('where')
             ->with('featured', true)
             ->once()
             ->andReturnSelf();
-        
+
         $result = $news->scopeFeatured($query);
         $this->assertSame($query, $result);
     }

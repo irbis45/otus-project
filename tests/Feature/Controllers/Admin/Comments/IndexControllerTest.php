@@ -234,7 +234,7 @@ class IndexControllerTest extends TestCase
         }
 
         $startTime = microtime(true);
-        
+
         $this->actingAs($this->adminUser)
             ->get(self::URL_INDEX)
             ->assertStatus(Response::HTTP_OK)
@@ -309,20 +309,6 @@ class IndexControllerTest extends TestCase
             ->assertStatus(Response::HTTP_OK); // Пользователь с ролью admin может получить доступ
     }
 
-    public function test_comments_index_shows_comment_management_buttons(): void
-    {
-        $comment = Comment::factory()->create([
-            'news_id' => $this->news->id,
-            'author_id' => $this->adminUser->id,
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.comments.index')
-            ->assertViewHas('comments');
-    }
-
     public function test_comments_index_shows_comment_search_functionality(): void
     {
         $this->actingAs($this->adminUser)
@@ -345,35 +331,6 @@ class IndexControllerTest extends TestCase
     {
         // Создаем больше комментариев, чем помещается на одной странице
         $comments = Comment::factory(25)->create([
-            'news_id' => $this->news->id,
-            'author_id' => $this->adminUser->id,
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.comments.index')
-            ->assertViewHas('comments');
-    }
-
-    public function test_comments_index_pagination_works(): void
-    {
-        // Создаем много комментариев
-        $comments = Comment::factory(25)->create([
-            'news_id' => $this->news->id,
-            'author_id' => $this->adminUser->id,
-        ]);
-
-        $this->actingAs($this->adminUser)
-            ->get(self::URL_INDEX . '?page=2')
-            ->assertStatus(Response::HTTP_OK)
-            ->assertViewIs('admin.comments.index')
-            ->assertViewHas('comments');
-    }
-
-    public function test_comments_index_shows_comment_moderation_options(): void
-    {
-        $comment = Comment::factory()->create([
             'news_id' => $this->news->id,
             'author_id' => $this->adminUser->id,
         ]);

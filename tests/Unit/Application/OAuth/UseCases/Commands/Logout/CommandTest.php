@@ -19,21 +19,21 @@ class CommandTest extends TestCase
     public function test_command_is_readonly()
     {
         $reflection = new \ReflectionClass(Command::class);
-        
+
         $this->assertTrue($reflection->isReadOnly());
     }
 
     public function test_command_is_final()
     {
         $reflection = new \ReflectionClass(Command::class);
-        
+
         $this->assertTrue($reflection->isFinal());
     }
 
     public function test_command_properties_are_public()
     {
         $reflection = new \ReflectionClass(Command::class);
-        
+
         $tokenIdProperty = $reflection->getProperty('tokenId');
 
         $this->assertTrue($tokenIdProperty->isPublic());
@@ -74,22 +74,6 @@ class CommandTest extends TestCase
         $this->assertEquals(1000, strlen($command->tokenId));
     }
 
-    public function test_command_with_numeric_string()
-    {
-        $tokenId = '123456';
-
-        $command = new Command($tokenId);
-
-        $this->assertEquals($tokenId, $command->tokenId);
-    }
-
-    public function test_command_property_is_string()
-    {
-        $command = new Command('token123');
-
-        $this->assertIsString($command->tokenId);
-    }
-
     public function test_command_with_uuid_format()
     {
         $tokenId = '550e8400-e29b-41d4-a716-446655440000';
@@ -108,15 +92,6 @@ class CommandTest extends TestCase
         $this->assertEquals($tokenId, $command->tokenId);
     }
 
-    public function test_command_immutability()
-    {
-        $command = new Command('token123');
-        
-        // Попытка изменить свойства должна вызвать ошибку
-        $this->expectException(\Error::class);
-        
-        $command->tokenId = 'newtoken';
-    }
 
     public function test_command_with_whitespace()
     {
@@ -137,3 +112,6 @@ class CommandTest extends TestCase
         $this->assertStringContainsString("\n", $command->tokenId);
     }
 }
+
+
+

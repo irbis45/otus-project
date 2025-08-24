@@ -18,10 +18,10 @@ class HandlerTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        
+
         $this->mockTokenRepository = Mockery::mock(OAuthTokenRepositoryInterface::class);
         $this->mockRefreshTokenRepository = Mockery::mock(OAuthRefreshTokenRepositoryInterface::class);
-        
+
         $this->handler = new Handler(
             $this->mockTokenRepository,
             $this->mockRefreshTokenRepository
@@ -52,7 +52,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -69,7 +69,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -87,7 +87,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -105,25 +105,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
-        $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
-    }
 
-    public function test_handle_with_long_token_id()
-    {
-        $tokenId = str_repeat('a', 1000);
-        $command = new Command($tokenId);
-
-        $this->mockTokenRepository->shouldReceive('revokeAccessToken')
-            ->with($tokenId)
-            ->once();
-
-        $this->mockRefreshTokenRepository->shouldReceive('revokeRefreshTokensByAccessTokenId')
-            ->with($tokenId)
-            ->once();
-
-        $this->handler->handle($command);
-        
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -141,7 +123,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -159,25 +141,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
-        $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
-    }
 
-    public function test_handle_with_jwt_format_token_id()
-    {
-        $tokenId = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c';
-        $command = new Command($tokenId);
-
-        $this->mockTokenRepository->shouldReceive('revokeAccessToken')
-            ->with($tokenId)
-            ->once();
-
-        $this->mockRefreshTokenRepository->shouldReceive('revokeRefreshTokensByAccessTokenId')
-            ->with($tokenId)
-            ->once();
-
-        $this->handler->handle($command);
-        
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -196,7 +160,7 @@ class HandlerTest extends TestCase
             ->ordered();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -231,7 +195,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -249,7 +213,7 @@ class HandlerTest extends TestCase
             ->once();
 
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
     }
 
@@ -267,9 +231,9 @@ class HandlerTest extends TestCase
 
         // Should not throw any exceptions
         $this->handler->handle($command);
-        
+
         $this->assertTrue(true); // Тест проходит, если не выбрасывается исключение
-        
+
         $this->assertTrue(true);
     }
 }

@@ -75,20 +75,10 @@ class Comment extends BaseModel
         return $this->{$this->getColumnName('author_id')};
     }
 
-    public function getNewsId(): int
+    public function getNewsId(): ?int
     {
         return $this->{$this->getColumnName('news_id')};
     }
-
-/*    public function getNewsItem(): ?News
-    {
-        return $this->newsItem;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }*/
 
     public function getCreatedAt(): ?Carbon {
         return $this->{$this->getColumnName('created_at')};

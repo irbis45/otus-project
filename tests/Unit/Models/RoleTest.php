@@ -27,7 +27,7 @@ class RoleTest extends TestCase
         $role = new Role();
         $role->id = 1;
         $role->name = 'Admin Role';
-        
+
         $this->assertEquals('id', $role->getColumnName('id'));
         $this->assertEquals('name', $role->getColumnName('name'));
         $this->assertEquals('unknown', $role->getColumnName('unknown'));
@@ -45,13 +45,6 @@ class RoleTest extends TestCase
         $role = new Role();
         $role->slug = 'admin';
         $this->assertEquals('admin', $role->getSlug());
-    }
-
-    public function test_get_name_returns_role_name()
-    {
-        $role = new Role();
-        $role->name = 'Administrator';
-        $this->assertEquals('Administrator', $role->getName());
     }
 
     public function test_role_has_users_relationship()

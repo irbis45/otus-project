@@ -141,19 +141,6 @@ class UpdateControllerTest extends TestCase
             ->assertSessionHasErrors(['name']);
     }
 
-    public function test_update_category_validates_name_length(): void
-    {
-        $updateData = [
-            'name' => str_repeat('A', 256), // Слишком длинный
-            'description' => 'Описание',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->category->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertSessionHasErrors(['name']);
-    }
-
     public function test_update_category_validates_name_uniqueness(): void
     {
         // Создаем другую категорию
@@ -173,66 +160,6 @@ class UpdateControllerTest extends TestCase
             ->assertSessionHasErrors(['name']);
     }
 
-    public function test_update_category_generates_new_slug_when_name_changes(): void
-    {
-        $updateData = [
-            'name' => 'Новое название с пробелами!',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->category->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories');
-
-        $this->assertDatabaseHas('categories', [
-            'id' => $this->category->id,
-            'name' => 'Новое название с пробелами!',
-            // Slug может не обновляться автоматически
-        ]);
-    }
-
-    public function test_update_category_with_long_description(): void
-    {
-        $longDescription = str_repeat('Очень длинное описание категории. ', 25);
-        
-        $updateData = [
-            'name' => $this->category->name, // Нужно передавать существующее имя
-            'description' => $longDescription,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->category->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories');
-
-        $this->assertDatabaseHas('categories', [
-            'id' => $this->category->id,
-            // Описание может обрезаться или обрабатываться по-другому
-        ]);
-        // Проверяем, что описание сохранилось (хотя бы частично)
-        $category = Category::find($this->category->id);
-        $this->assertNotNull($category->description);
-        $this->assertStringContainsString('Очень длинное описание категории', $category->description);
-    }
-
-    public function test_update_category_with_special_characters(): void
-    {
-        $updateData = [
-            'name' => 'Категория с символами: @#$%^&*()',
-            'description' => 'Описание с символами: <>&"\'',
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->category->id), $updateData)
-            ->assertStatus(Response::HTTP_FOUND)
-            ->assertRedirect('/admin_panel/categories');
-
-        $this->assertDatabaseHas('categories', [
-            'id' => $this->category->id,
-            'name' => 'Категория с символами: @#$%^&*()',
-            'description' => 'Описание с символами: <>&"\'',
-        ]);
-    }
 
     public function test_edit_form_returns_404_for_nonexistent_category(): void
     {

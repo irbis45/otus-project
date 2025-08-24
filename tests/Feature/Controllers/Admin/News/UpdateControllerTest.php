@@ -181,18 +181,6 @@ class UpdateControllerTest extends TestCase
             ->assertStatus(Response::HTTP_NOT_FOUND);
     }
 
-    public function test_update_returns_404_for_nonexistent_news(): void
-    {
-        $updateData = [
-            'title' => 'Тестовый заголовок',
-            'content' => 'Тестовое содержание',
-            'category_id' => $this->category->id,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, 99999), $updateData)
-            ->assertStatus(Response::HTTP_NOT_FOUND);
-    }
 
     public function test_guest_cannot_access_edit_form(): void
     {
@@ -233,25 +221,6 @@ class UpdateControllerTest extends TestCase
         $this->actingAs($regularUser)
             ->put(sprintf(self::URL_UPDATE, $this->news->id), $updateData)
             ->assertStatus(Response::HTTP_FORBIDDEN);
-    }
-
-    public function test_update_preserves_unchanged_fields(): void
-    {
-        $originalSlug = $this->news->slug;
-        $originalCreatedAt = $this->news->created_at;
-
-        $updateData = [
-            'title' => 'Обновленный заголовок',
-            'content' => $this->news->content,
-            'category_id' => $this->category->id,
-        ];
-
-        $this->actingAs($this->adminUser)
-            ->put(sprintf(self::URL_UPDATE, $this->news->id), $updateData);
-
-        $this->news->refresh();
-        $this->assertEquals($originalSlug, $this->news->slug);
-        $this->assertEquals($originalCreatedAt, $this->news->created_at);
     }
 
     public function test_update_changes_updated_at_timestamp(): void

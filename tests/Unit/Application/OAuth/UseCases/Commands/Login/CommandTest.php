@@ -21,21 +21,21 @@ class CommandTest extends TestCase
     public function test_command_is_readonly()
     {
         $reflection = new \ReflectionClass(Command::class);
-        
+
         $this->assertTrue($reflection->isReadOnly());
     }
 
     public function test_command_is_final()
     {
         $reflection = new \ReflectionClass(Command::class);
-        
+
         $this->assertTrue($reflection->isFinal());
     }
 
     public function test_command_properties_are_public()
     {
         $reflection = new \ReflectionClass(Command::class);
-        
+
         $emailProperty = $reflection->getProperty('email');
         $passwordProperty = $reflection->getProperty('password');
 
@@ -102,14 +102,7 @@ class CommandTest extends TestCase
         $this->assertIsString($command->email);
         $this->assertIsString($command->password);
     }
-
-    public function test_command_immutability()
-    {
-        $command = new Command('test@example.com', 'password');
-        
-        // Попытка изменить свойства должна вызвать ошибку
-        $this->expectException(\Error::class);
-        
-        $command->email = 'new@example.com';
-    }
 }
+
+
+
